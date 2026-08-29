@@ -17,13 +17,21 @@
       -webkit-font-smoothing:antialiased;
     }
     a { color:inherit; text-decoration:none; }
-    .hero {
+    .hero-wrap {
       position:relative;
       background:#0b0b0b;
     }
-    .hero-photo {
+    .hero-photo, .hero {
       display:block;
+      width:100%;
+      aspect-ratio:3/2;
+      min-height:0 !important;
+      height:auto !important;
+      background-size:contain !important;
+      background-position:center !important;
+      background-repeat:no-repeat !important;
     }
+    .hero::after, .hero-photo::after { content:none !important; display:none !important; }
     .hero-copy {
       position:relative;
       z-index:1;
@@ -100,7 +108,7 @@
     }
     footer a:hover { color:var(--paper); }
 
-    .hero { display:flex; flex-direction:column; }
+    .hero-wrap { display:flex; flex-direction:column; }
     .hero-copy {
       width:calc(100% - 32px);
       margin:0 auto;
@@ -108,6 +116,7 @@
     }
     h1 { font-size:clamp(2.8rem, 16vw, 4.4rem); }
 
+    /* Desktop: photo is the canvas, type sits in the left sky only */
     @media (min-width:801px) {
       .hero-copy {
         position:absolute;
@@ -126,7 +135,7 @@
   </style>
 </head>
 <body>
-  <section class="hero">
+  <section class="hero-wrap">
     <div class="hero-copy">
       <div class="nav">
         <span class="mark">ML</span>
@@ -146,7 +155,7 @@
         <span>Quoted ↓</span>
       </div>
     </div>
-    <div class="hero-photo" role="img" aria-label="Mason Lynaugh walking toward the camera"></div>
+    <div class="hero hero-photo" role="img" aria-label="Mason Lynaugh walking toward the camera"></div>
   </section>
   <section class="press">
     <div class="wrap">
