@@ -66,21 +66,20 @@
     }
     h1 {
       font-family:Times, "Times New Roman", serif;
-      font-size:clamp(3.4rem, 13vw, 9.5rem);
+      font-size:clamp(2.6rem, 7.2vw, 6.2rem);
       font-weight:900;
       font-style:italic;
-      line-height:.7;
-      letter-spacing:-.08em;
+      line-height:.78;
+      letter-spacing:-.07em;
       text-transform:uppercase;
-      margin-top:8vh;
-      white-space:nowrap;
+      margin-top:6vh;
     }
     h1 b {
       display:block;
       color:var(--red);
       font-style:normal;
-      transform:translateX(-10px) skewX(-14deg);
-      -webkit-text-stroke:1px var(--red);
+      transform:translateX(-4px) skewX(-8deg);
+      transform-origin:left center;
     }
     .role {
       margin-top:14px;
@@ -187,12 +186,24 @@
     }
     footer a { color:var(--paper); }
     @media (max-width:700px) {
-      .hero { background-position:88% 36% !important; }
-      .col, .seam { width:44%; max-width:44%; }
-      .seam { left:44%; }
-      h1 { font-size:clamp(2.6rem, 16vw, 4.2rem); margin-top:6vh; }
-      .meta { font-size:1rem; }
+      .hero { background-position:100% 18% !important; }
+      .hero::after {
+        background:linear-gradient(180deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.35) 28%, rgba(0,0,0,0) 52%);
+      }
+      .col {
+        width:100%;
+        max-width:none;
+        height:auto;
+        bottom:auto;
+        padding:16px 38% 16px 14px;
+        justify-content:flex-start;
+        gap:14px;
+      }
+      .seam { display:none; }
+      h1 { font-size:clamp(2.2rem, 11vw, 3.2rem); margin-top:10px; }
+      .meta { font-size:.95rem; max-width:14em; }
       .vert { display:none; }
+      .badge { margin-top:12px; }
     }
   </style>
 </head>
