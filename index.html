@@ -4,69 +4,148 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mason Lynaugh</title>
-  <meta name="description" content="Mason Lynaugh is executive director of Stand With Crypto." />
+  <meta name="description" content="Mason Lynaugh, Executive Director of Stand With Crypto." />
   <style>
-    :root { --ink:#111; --paper:#f4f1ea; --muted:#8a867c; --line:rgba(244,241,234,.14); --card:#1a1a1a; }
+    :root { --paper:#ece8de; --muted:#b7b1a4; --red:#e23d28; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--ink); color:var(--paper); font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:15px; line-height:1.4; -webkit-font-smoothing:antialiased; }
-    a { color:inherit; }
-    .wrap { width:min(720px, calc(100% - 40px)); margin:0 auto; }
-    header { padding:28px 0 22px; }
-    .nav { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
-    .nav a { text-decoration:none; margin-left:16px; }
+    html, body { min-height:100%; }
+    body {
+      background:#0b0b0b;
+      color:var(--paper);
+      font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:inherit; text-decoration:none; }
+    .hero {
+      min-height:100vh;
+      position:relative;
+      background:#0b0b0b url("mason.jpg") right center / cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::after {
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,8,8,.55) 0%, rgba(8,8,8,.12) 42%, rgba(8,8,8,0) 70%),
+        linear-gradient(180deg, rgba(8,8,8,.2) 0%, rgba(8,8,8,0) 28%, rgba(8,8,8,.55) 100%);
+      pointer-events:none;
+    }
+    .hero-inner {
+      position:relative; z-index:1;
+      min-height:100vh;
+      width:min(1120px, calc(100% - 48px));
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:28px 0 36px;
+    }
+    .nav {
+      display:flex; justify-content:space-between; align-items:baseline;
+      font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500;
+    }
+    .nav a { margin-left:22px; color:var(--muted); }
     .nav a:hover { color:var(--paper); }
-    .hero { display:grid; grid-template-columns:128px 1fr; gap:20px; align-items:center; }
-    .hero > img { width:128px; height:160px; object-fit:cover; object-position:50% 18%; }
-    h1 { font-size:clamp(1.8rem,5vw,2.4rem); font-weight:500; letter-spacing:-.03em; line-height:1.05; }
-    .role { margin-top:6px; font-size:13px; color:var(--muted); }
-    .meta { margin-top:10px; font-size:13px; max-width:36em; }
-    .strip { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:18px; }
-    .strip img { width:100%; height:110px; object-fit:cover; display:block; }
-    .press { padding:22px 0 8px; border-top:1px solid var(--line); }
-    .press h2 { font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:500; color:var(--muted); margin-bottom:12px; }
-    .quotes { display:grid; gap:8px; }
-    .quotes a { display:block; text-decoration:none; background:var(--card); padding:14px 16px; border:1px solid var(--line); }
-    .quotes a:hover { border-color:rgba(244,241,234,.35); }
-    .quotes q { display:block; font-size:15px; font-weight:500; letter-spacing:-.01em; quotes:none; }
-    .quotes span { display:block; margin-top:8px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-    footer { padding:20px 0 36px; margin-top:8px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--muted); }
-    footer .links { display:flex; gap:14px; flex-wrap:wrap; }
-    footer a { text-decoration:none; }
+    .mark { color:var(--red); letter-spacing:.28em; }
+    h1 {
+      font-size:clamp(3.4rem, 12vw, 8.4rem);
+      font-weight:500;
+      line-height:.82;
+      letter-spacing:-.055em;
+      text-transform:uppercase;
+      max-width:9ch;
+    }
+    .role {
+      margin-top:18px;
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .meta {
+      margin-top:10px;
+      max-width:22em;
+      font-size:15px;
+      line-height:1.35;
+      font-weight:500;
+    }
+    .bottom {
+      display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+      align-items:flex-end;
+      font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+    }
+    .press {
+      background:#0b0b0b;
+      padding:56px 0 72px;
+      border-top:1px solid rgba(236,232,222,.12);
+    }
+    .wrap { width:min(1120px, calc(100% - 48px)); margin:0 auto; }
+    .press h2 {
+      font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+      font-weight:500; color:var(--red); margin-bottom:28px;
+    }
+    .quotes a {
+      display:block; padding:22px 0;
+      border-top:1px solid rgba(236,232,222,.12);
+    }
+    .quotes a:last-child { border-bottom:1px solid rgba(236,232,222,.12); }
+    .quotes q {
+      display:block;
+      quotes:none;
+      font-size:clamp(1.25rem, 3.2vw, 2rem);
+      font-weight:500;
+      letter-spacing:-.03em;
+      line-height:1.15;
+      max-width:22em;
+    }
+    .quotes span {
+      display:block; margin-top:10px;
+      font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+    }
+    .quotes a:hover q { color:#fff; }
+    footer {
+      padding:28px 0 48px;
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+    }
     footer a:hover { color:var(--paper); }
-    @media (max-width:560px) { .hero { grid-template-columns:96px 1fr; gap:14px; } .hero > img { width:96px; height:120px; } .strip img { height:72px; } }
+    @media (max-width:700px) {
+      .hero { background-position:72% center; }
+      h1 { font-size:clamp(2.8rem, 18vw, 4.4rem); }
+      .hero-inner { width:calc(100% - 32px); }
+      .wrap { width:calc(100% - 32px); }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <section class="hero">
+    <div class="hero-inner">
       <div class="nav">
-        <span>Mason Lynaugh</span>
+        <span class="mark">ML</span>
         <div>
           <a href="https://www.standwithcrypto.org">SWC</a>
           <a href="https://x.com/masonlynaugh">X</a>
           <a href="https://www.linkedin.com/in/masonlynaugh">LinkedIn</a>
         </div>
       </div>
-      <div class="hero">
-        <img src="https://pbs.twimg.com/profile_images/2009266386393018368/hONgxeg8_400x400.jpg" alt="Mason Lynaugh" />
-        <div>
-          <h1>Mason Lynaugh</h1>
-          <p class="role">Executive Director, Stand With Crypto</p>
-          <p class="meta">ATX DAO cofounder. UT Austin. Forbes 30 Under 30 Local Austin. Building the ground game for 3M+ crypto advocates.</p>
-        </div>
+      <div>
+        <h1>Mason<br>Lynaugh</h1>
+        <p class="role">Executive Director · Stand With Crypto</p>
+        <p class="meta">ATX DAO cofounder. Forbes 30 Under 30 Local Austin. Building the ground game for 3M+ crypto advocates.</p>
       </div>
-      <div class="strip">
-        <img src="https://pbs.twimg.com/profile_images/2009266386393018368/hONgxeg8_400x400.jpg" alt="" />
-        <img src="https://media.licdn.com/dms/image/v2/D4E22AQHiJKOhQfxxRg/feedshare-shrink_800/feedshare-shrink_800/0/1691598064049?e=2147483647&v=beta&t=pke5oGYkNo92aLcM2TUhmm58p0DG4JlVPEGv9s2wvpo" alt="" />
-        <img src="https://avatars.githubusercontent.com/u/7013596?s=400&v=4" alt="" />
-        <img src="https://images.squarespace-cdn.com/content/v1/5d6fed49700fa600018133a6/1628202724828-VPSWCF08V3T1H2R8X7CK/macelee-HIF-tracks-20210805.5.jpg?format=750w" alt="" />
+      <div class="bottom">
+        <span>Trying something new.</span>
+        <span>Quoted ↓</span>
       </div>
-    </header>
-    <section class="press">
+    </div>
+  </section>
+  <section class="press">
+    <div class="wrap">
       <h2>Quoted in</h2>
       <div class="quotes">
         <a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">
-          <q>2026 is where we prove that the crypto voter is a defining constituency for the next generation, and it’s a time when we hold politicians accountable.</q>
+          <q>2026 is where we prove that the crypto voter is a defining constituency for the next generation.</q>
           <span>Punchbowl News · Sep 2025</span>
         </a>
         <a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">
@@ -78,19 +157,19 @@
           <span>crypto.news · Consensus Miami 2026</span>
         </a>
         <a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">
-          <q>As candidates from both parties try to reach voters outside traditional constituencies, they overlook crypto voters at their own peril.</q>
+          <q>They overlook crypto voters at their own peril.</q>
           <span>CoinDesk · Aug 2026</span>
         </a>
       </div>
-    </section>
-    <footer>
-      <div class="links">
-        <a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">ED announcement</a>
-        <a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">Forbes 30 Under 30</a>
+      <footer>
+        <div>
+          <a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">ED announcement</a>
+          &nbsp;·&nbsp;
+          <a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">Forbes 30 Under 30</a>
+        </div>
         <a href="https://github.com/masonleenaugh">GitHub</a>
-      </div>
-      <span>Trying something new.</span>
-    </footer>
-  </div>
+      </footer>
+    </div>
+  </section>
 </body>
 </html>
