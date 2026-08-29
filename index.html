@@ -1,1 +1,263 @@
-FILE:/tmp/gh-create-or-update.json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MASON LYNAUGH — /index.html</title>
+  <link rel="stylesheet" href="hero.css" />
+  <meta name="description" content="Mason Lynaugh, Executive Director of Stand With Crypto." />
+  <style>
+    :root { --paper:#f3eee2; --red:#ff2a12; --mute:#9a9386; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body { min-height:100%; background:#000; color:var(--paper); }
+    body {
+      font-family:"Courier New", Courier, ui-monospace, monospace;
+      cursor:crosshair;
+    }
+    ::selection { background:var(--red); color:#000; }
+    a { color:inherit; }
+    a:hover { background:var(--red); color:#000; }
+    .hero {
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+      background-color:#0b0b0b;
+      background-size:cover !important;
+      background-position:82% 38% !important;
+      background-repeat:no-repeat !important;
+    }
+    .hero::after {
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.28) 34%, rgba(0,0,0,0) 52%);
+      pointer-events:none;
+    }
+    .seam {
+      position:absolute; top:0; bottom:0; left:46%;
+      width:1px; background:var(--red);
+      z-index:3; pointer-events:none; opacity:.85;
+    }
+    .col {
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:46%;
+      max-width:46%;
+      overflow:hidden;
+      z-index:2;
+      padding:16px 12px 20px 16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .file {
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--red);
+    }
+    nav { margin-top:10px; }
+    nav a {
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      margin-right:14px;
+    }
+    h1 {
+      font-family:Times, "Times New Roman", serif;
+      font-size:clamp(3.4rem, 13vw, 9.5rem);
+      font-weight:900;
+      font-style:italic;
+      line-height:.7;
+      letter-spacing:-.08em;
+      text-transform:uppercase;
+      margin-top:8vh;
+      white-space:nowrap;
+    }
+    h1 b {
+      display:block;
+      color:var(--red);
+      font-style:normal;
+      transform:translateX(-10px) skewX(-14deg);
+      -webkit-text-stroke:1px var(--red);
+    }
+    .role {
+      margin-top:14px;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+    }
+    .meta {
+      font-family:Times, "Times New Roman", serif;
+      font-style:italic;
+      font-size:clamp(1rem, 2.2vw, 1.35rem);
+      line-height:1.15;
+      max-width:16em;
+      margin-top:8px;
+    }
+    .badge {
+      display:inline-block;
+      margin-top:18px;
+      border:2px solid var(--red);
+      color:var(--red);
+      padding:7px 11px 5px;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      transform:rotate(-9deg);
+      width:max-content;
+    }
+    .vert {
+      position:absolute;
+      left:6px; bottom:18%;
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      font-size:10px;
+      letter-spacing:.4em;
+      text-transform:uppercase;
+      color:var(--red);
+      z-index:4;
+    }
+    .bottom {
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--mute);
+    }
+    .bottom a { color:var(--paper); }
+    .press {
+      background:#000;
+      border-top:8px solid var(--red);
+      padding:0;
+    }
+    .press h2 {
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--red);
+      padding:18px 16px 0;
+    }
+    .quotes a {
+      display:grid;
+      grid-template-columns:48px 1fr;
+      gap:12px;
+      padding:28px 16px;
+      border-bottom:1px dashed var(--mute);
+      text-decoration:none;
+    }
+    .quotes a:nth-child(odd) { background:#0a0a0a; }
+    .quotes a:hover { background:var(--red); color:#000; }
+    .n {
+      font-size:11px;
+      letter-spacing:.16em;
+      color:var(--red);
+      padding-top:6px;
+    }
+    .quotes a:hover .n { color:#000; }
+    q {
+      display:block;
+      quotes:none;
+      font-family:Times, "Times New Roman", serif;
+      font-style:italic;
+      font-size:clamp(1.4rem, 3.6vw, 2.4rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      max-width:22em;
+    }
+    .src {
+      display:block;
+      margin-top:10px;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--mute);
+    }
+    .quotes a:hover .src { color:#000; }
+    footer {
+      padding:22px 16px 48px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--mute);
+    }
+    footer a { color:var(--paper); }
+    @media (max-width:700px) {
+      .hero { background-position:88% 36% !important; }
+      .col, .seam { width:44%; max-width:44%; }
+      .seam { left:44%; }
+      h1 { font-size:clamp(2.6rem, 16vw, 4.2rem); margin-top:6vh; }
+      .meta { font-size:1rem; }
+      .vert { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="seam" aria-hidden="true"></div>
+    <p class="vert">uncorrected proof · 2026</p>
+    <div class="col">
+      <div>
+        <p class="file">INDEX.HTML // PUBLIC</p>
+        <nav>
+          <a href="https://www.standwithcrypto.org">SWC</a>
+          <a href="https://x.com/masonlynaugh">X</a>
+          <a href="https://www.linkedin.com/in/masonlynaugh">LinkedIn</a>
+        </nav>
+      </div>
+      <div>
+        <h1>Mason<b>Lynaugh</b></h1>
+        <p class="role">// executive director</p>
+        <p class="meta">ATX DAO cofounder. Forbes 30 Under 30 Local Austin. Ground game for 3M+ crypto advocates.</p>
+        <p class="badge">trying something new</p>
+      </div>
+      <p class="bottom"><a href="#press">quoted ↓</a></p>
+    </div>
+  </section>
+  <section class="press" id="press">
+    <h2>Quoted in — do not bury</h2>
+    <div class="quotes">
+      <a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">
+        <span class="n">01</span>
+        <span>
+          <q>2026 is where we prove that the crypto voter is a defining constituency for the next generation.</q>
+          <span class="src">Punchbowl News · Sep 2025</span>
+        </span>
+      </a>
+      <a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">
+        <span class="n">02</span>
+        <span>
+          <q>The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.</q>
+          <span class="src">The Block · May 2026</span>
+        </span>
+      </a>
+      <a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">
+        <span class="n">03</span>
+        <span>
+          <q>This year crypto voters are poised to play a powerful and decisive role at the ballot box.</q>
+          <span class="src">crypto.news · Consensus Miami 2026</span>
+        </span>
+      </a>
+      <a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">
+        <span class="n">04</span>
+        <span>
+          <q>They overlook crypto voters at their own peril.</q>
+          <span class="src">CoinDesk · Aug 2026</span>
+        </span>
+      </a>
+    </div>
+    <footer>
+      <div>
+        <a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">ED announcement</a>
+        &nbsp;/&nbsp;
+        <a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">Forbes 30U30</a>
+      </div>
+      <a href="https://github.com/masonleenaugh">github.com/masonleenaugh</a>
+    </footer>
+  </section>
+</body>
+</html>
