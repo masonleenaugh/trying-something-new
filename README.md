@@ -1,2 +1,5 @@
-# trying-something-new
-Mason is trying something new with Grok Bot
+# masonlynaugh
+
+Personal site for Mason Lynaugh, Executive Director of Stand With Crypto.
+
+Live: https://trying-something-new-pi.vercel.app
