@@ -131,7 +131,11 @@
     }
     .feed li:last-child { border-bottom:0; }
     .feed .q { display:block; margin-bottom:.5em; }
-    .feed .head { display:block; margin-bottom:.5em; color:var(--fg); }
+    /* entries with no verified pull quote show the headline instead, and say so */
+    .feed .head {
+      display:block; margin-bottom:.5em; color:var(--fg);
+      border-left:2px solid var(--line); padding-left:10px;
+    }
     .feed .src { color:var(--dim); font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
     .feed .tag {
       color:var(--red); border:1px solid var(--line);
@@ -232,7 +236,7 @@
             </li>
             <li>
               <span class="head">Democratic divisions emerge as Congress tackles crypto regulation</span>
-              <span class="src"><a href="https://www.nbcnews.com/politics/congress/democratic-divisions-emerge-congress-tackles-crypto-regulation-rcna212886">NBC News</a> &middot; 17 Jun 2025</span>
+              <span class="src"><a href="https://www.nbcnews.com/politics/congress/democratic-divisions-emerge-congress-tackles-crypto-regulation-rcna212886">NBC News</a> &middot; 17 Jun 2025 <span class="tag">mention</span></span>
             </li>
           </ul>
         </div>
