@@ -1,13 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 92" role="img" aria-label="Texas">
-  <path fill="#ff2a12" d="
-    M36 2 L53 2 L53 25
-    L58 26 L63 24 L68 27 L73 25 L78 26
-    L80 34 L77 43 L80 50
-    L72 58 L64 65 L56 70 L49 76
-    L44 88
-    L37 80 L31 74 L26 69
-    L22 73 L19 66
-    L11 54 L2 44
-    L2 36 L36 36
-    Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Crossed circle">
+  <g fill="none" stroke="#ff2a12" stroke-width="9" stroke-linecap="round">
+    <circle cx="50" cy="50" r="38"/>
+    <path d="M23.1 23.1 L76.9 76.9 M76.9 23.1 L23.1 76.9"/>
+  </g>
 </svg>
