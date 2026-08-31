@@ -34,8 +34,8 @@
       display:flex;
       align-items:flex-start;
       padding:74px 20px 54px;
-      /* figure sits right of the seam, low in frame, so it balances the
-         copy block sitting high on the left */
+      /* figure sits low and right in frame, balancing the copy block
+         sitting high on the left */
       background:#0b0b0b url("hero.jpg") 78% 62% / cover no-repeat;
       overflow:hidden;
     }
@@ -65,11 +65,6 @@
     .role { margin-bottom:1em; }
     .bio { max-width:44ch; color:var(--fg); }
 
-    /* the one flourish: a hairline that cuts the page */
-    .seam {
-      position:absolute; top:0; bottom:0; left:54%;
-      width:1px; background:var(--red); opacity:.8; z-index:3;
-    }
 
     /* ---------- body ---------- */
 
@@ -85,6 +80,10 @@
       margin-top:3.2em;
     }
     .below .pic { margin:0; }
+    .below .col { min-width:0; }
+    .bio-full { margin-top:2.8em; }
+    .bio-full p { margin-bottom:1.1em; max-width:62ch; }
+    .bio-full p:last-child { margin-bottom:0; }
     .below .pressbox { min-width:0; }
     .below h2 { margin-top:0; }
 
@@ -164,7 +163,6 @@
       .hero::after {
         background:linear-gradient(180deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 26%, rgba(0,0,0,.15) 52%, rgba(0,0,0,0) 70%);
       }
-      .seam { display:none; }
       main { padding:0 15px 64px; }
       h2 em { display:none; }        /* no room for the subtitle; it wraps badly */
       .below { grid-template-columns:1fr; gap:0; margin-top:2.2em; }
@@ -178,7 +176,6 @@
 <body>
 
   <section class="hero">
-    <span class="seam" aria-hidden="true"></span>
     <p class="path">index.html<b> // </b>public</p>
     <div class="inner">
       <h1>Mason <span>Lynaugh</span></h1>
@@ -192,11 +189,28 @@
 
     <div class="below">
 
-      <figure class="pic">
-        <img src="consensus.jpg" width="2000" height="1125" loading="lazy"
-             alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
-        <figcaption>consensus miami &middot; 2026</figcaption>
-      </figure>
+      <div class="col">
+        <figure class="pic">
+          <img src="consensus.jpg" width="2000" height="1125" loading="lazy"
+               alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
+          <figcaption>consensus miami &middot; 2026</figcaption>
+        </figure>
+
+        <section class="bio-full">
+          <h2><span>Bio</span></h2>
+          <p>Mason Lynaugh is the Executive Director of Stand With Crypto, America&rsquo;s
+             largest crypto advocacy organization. As Stand With Crypto&rsquo;s first hire
+             and Community Director, Lynaugh led the growth of SWC&rsquo;s grassroots
+             community to nearly 3 million advocates nationwide, expanded state chapter
+             programs to all 50 states, and launched the Stand With Crypto college chapter
+             program. He is dedicated to building the infrastructure that helps convert the
+             crypto community&rsquo;s enthusiasm into pro-crypto policy, expanding
+             opportunity and economic freedom for more Americans.</p>
+          <p>Prior to joining Stand With Crypto, Mason co-founded ATX DAO, an Austin-based
+             organization he built to position Texas as a leading crypto hub &mdash; work
+             that earned him a spot on Forbes&rsquo; &ldquo;30 Under 30 Austin&rdquo; list.</p>
+        </section>
+      </div>
 
       <section class="pressbox">
         <h2><span>Press</span><em>most recent first &middot; scroll or let it run</em></h2>
