@@ -32,16 +32,18 @@
       position:relative;
       min-height:100vh;
       display:flex;
-      align-items:flex-end;
-      padding:44px 20px 54px;
-      background:#0b0b0b url("hero.jpg") 72% 40% / cover no-repeat;
+      align-items:flex-start;
+      padding:74px 20px 54px;
+      /* figure sits right of the seam, low in frame, so it balances the
+         copy block sitting high on the left */
+      background:#0b0b0b url("hero.jpg") 78% 62% / cover no-repeat;
       overflow:hidden;
     }
     .hero::after {
       content:"";
       position:absolute; inset:0;
-      background:linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.5) 40%, rgba(0,0,0,0) 72%),
-                 linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 42%);
+      background:linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 34%, rgba(0,0,0,0) 62%),
+                 linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,0) 46%);
       pointer-events:none;
     }
     .hero .inner { position:relative; z-index:2; max-width:52ch; }
@@ -65,13 +67,26 @@
 
     /* the one flourish: a hairline that cuts the page */
     .seam {
-      position:absolute; top:0; bottom:0; left:46%;
+      position:absolute; top:0; bottom:0; left:54%;
       width:1px; background:var(--red); opacity:.8; z-index:3;
     }
 
     /* ---------- body ---------- */
 
-    main { max-width:88ch; margin:0 auto; padding:0 20px 90px; }
+    main { max-width:1180px; margin:0 auto; padding:0 20px 90px; }
+
+    /* below the fold: photograph left, feed right. The right column begins at
+       54% so it lands under the figure standing in the hero above it. */
+    .below {
+      display:grid;
+      grid-template-columns:54% 1fr;
+      gap:0 30px;
+      align-items:start;
+      margin-top:3.2em;
+    }
+    .below .pic { margin:0; }
+    .below .pressbox { min-width:0; }
+    .below h2 { margin-top:0; }
 
     h2 {
       font-size:11px; font-weight:400; letter-spacing:.24em; text-transform:uppercase;
@@ -86,7 +101,7 @@
     /* ---------- press: a real scroller that also drifts ---------- */
 
     .feed {
-      height:340px;
+      height:clamp(320px, 52vh, 560px);
       overflow-y:auto;
       overscroll-behavior:contain;
       border:1px solid var(--line);
@@ -139,13 +154,17 @@
 
     @media (max-width:700px) {
       body { font-size:14px; }
-      .hero { min-height:94vh; padding:40px 15px 40px; background-position:66% 34%; }
+      /* copy sits at the top here, so the scrim has to weight the top too,
+         and the figure drops low to stay clear of it */
+      .hero { min-height:94vh; padding:56px 15px 40px; background-position:76% 82%; }
       .hero::after {
-        background:linear-gradient(0deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.45) 44%, rgba(0,0,0,0) 74%);
+        background:linear-gradient(180deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 26%, rgba(0,0,0,.15) 52%, rgba(0,0,0,0) 70%);
       }
       .seam { display:none; }
       main { padding:0 15px 64px; }
       h2 em { display:none; }        /* no room for the subtitle; it wraps badly */
+      .below { grid-template-columns:1fr; gap:0; margin-top:2.2em; }
+      .below .pressbox { margin-top:2.4em; }
       .feed { height:300px; }
       .links { grid-template-columns:1fr; gap:0; }
       .links dd { margin-bottom:.7em; }
@@ -167,53 +186,61 @@
 
   <main>
 
-    <h2><span>Press</span><em>most recent first &middot; scroll or let it run</em></h2>
-    <div class="feed" id="feed" tabindex="0" aria-label="Press mentions, most recent first">
-      <ul>
-        <li>
-          <span class="q">&ldquo;In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle.&rdquo;</span>
-          <span class="src"><a href="https://www.investing.com/news/stock-market-news/coinbasebacked-crypto-advocacy-group-endorses-32-us-midterm-candidates-4873491">Reuters</a> &middot; 24 Aug 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;They overlook crypto voters at their own peril.&rdquo;</span>
-          <span class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; 24 Aug 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;Advocates will be mobilizing in their communities during August recess to ensure their senators understand the urgency and necessity of enacting a fair, transparent legal framework.&rdquo;</span>
-          <span class="src"><a href="https://rollcall.com/2026/08/18/crypto-bill-in-limbo-as-stakeholders-ramp-up-recess-efforts/">Roll Call</a> &middot; 18 Aug 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;The CLARITY Act will put an end to crypto users, developers, and companies existing in gray areas.&rdquo;</span>
-          <span class="src"><a href="https://washingtonreporter.news/op-ed-mason-lynaugh-congress-is-getting-market-structure-right-for-millions-of-americans-now-its-time-to-get-it-done/">Washington Reporter</a> &middot; 25 Jun 2026 <span class="tag">op-ed</span></span>
-        </li>
-        <li>
-          <span class="q">&ldquo;The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.&rdquo;</span>
-          <span class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; 14 May 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;This year crypto voters are poised to play a powerful and decisive role at the ballot box.&rdquo;</span>
-          <span class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; 7 May 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;It's really going to be interesting to see how the margins are shaped by people who are voting specifically for crypto champions or against crypto antagonists.&rdquo;</span>
-          <span class="src"><a href="https://www.semafor.com/article/03/26/2026/pro-crypto-group-launches-midterms-offensive">Semafor</a> &middot; 26 Mar 2026</span>
-        </li>
-        <li>
-          <span class="q">&ldquo;2026 is where we prove that the crypto voter is a defining constituency for the next generation.&rdquo;</span>
-          <span class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; 5 Sep 2025</span>
-        </li>
-        <li>
-          <span class="head">Democratic divisions emerge as Congress tackles crypto regulation</span>
-          <span class="src"><a href="https://www.nbcnews.com/politics/congress/democratic-divisions-emerge-congress-tackles-crypto-regulation-rcna212886">NBC News</a> &middot; 17 Jun 2025</span>
-        </li>
-      </ul>
+    <div class="below">
+
+      <figure class="pic">
+        <img src="consensus.jpg" width="2000" height="1125" loading="lazy"
+             alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
+        <figcaption>consensus miami &middot; 2026</figcaption>
+      </figure>
+
+      <section class="pressbox">
+        <h2><span>Press</span><em>most recent first &middot; scroll or let it run</em></h2>
+        <div class="feed" id="feed" tabindex="0" aria-label="Press mentions, most recent first">
+          <ul>
+            <li>
+              <span class="q">&ldquo;In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle.&rdquo;</span>
+              <span class="src"><a href="https://www.investing.com/news/stock-market-news/coinbasebacked-crypto-advocacy-group-endorses-32-us-midterm-candidates-4873491">Reuters</a> &middot; 24 Aug 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;They overlook crypto voters at their own peril.&rdquo;</span>
+              <span class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; 24 Aug 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;Advocates will be mobilizing in their communities during August recess to ensure their senators understand the urgency and necessity of enacting a fair, transparent legal framework.&rdquo;</span>
+              <span class="src"><a href="https://rollcall.com/2026/08/18/crypto-bill-in-limbo-as-stakeholders-ramp-up-recess-efforts/">Roll Call</a> &middot; 18 Aug 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;The CLARITY Act will put an end to crypto users, developers, and companies existing in gray areas.&rdquo;</span>
+              <span class="src"><a href="https://washingtonreporter.news/op-ed-mason-lynaugh-congress-is-getting-market-structure-right-for-millions-of-americans-now-its-time-to-get-it-done/">Washington Reporter</a> &middot; 25 Jun 2026 <span class="tag">op-ed</span></span>
+            </li>
+            <li>
+              <span class="q">&ldquo;The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.&rdquo;</span>
+              <span class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; 14 May 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;This year crypto voters are poised to play a powerful and decisive role at the ballot box.&rdquo;</span>
+              <span class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; 7 May 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;It's really going to be interesting to see how the margins are shaped by people who are voting specifically for crypto champions or against crypto antagonists.&rdquo;</span>
+              <span class="src"><a href="https://www.semafor.com/article/03/26/2026/pro-crypto-group-launches-midterms-offensive">Semafor</a> &middot; 26 Mar 2026</span>
+            </li>
+            <li>
+              <span class="q">&ldquo;2026 is where we prove that the crypto voter is a defining constituency for the next generation.&rdquo;</span>
+              <span class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; 5 Sep 2025</span>
+            </li>
+            <li>
+              <span class="head">Democratic divisions emerge as Congress tackles crypto regulation</span>
+              <span class="src"><a href="https://www.nbcnews.com/politics/congress/democratic-divisions-emerge-congress-tackles-crypto-regulation-rcna212886">NBC News</a> &middot; 17 Jun 2025</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
     </div>
 
-    <figure>
-      <img src="consensus.jpg" width="2000" height="1125" loading="lazy"
-           alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
-      <figcaption>consensus miami &middot; 2026</figcaption>
-    </figure>
+
 
     <h2><span>Links</span></h2>
     <dl class="links">
