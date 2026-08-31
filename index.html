@@ -33,7 +33,7 @@
     :root {
       --bg:#0a0a0b;
       --fg:#d9d4c8;
-      --red:#ff2a12;
+      --accent:#ff9f1c;
       --dim:#6f6a61;
       --line:#232220;
     }
@@ -46,9 +46,9 @@
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
     }
-    ::selection { background:var(--red); color:#000; }
+    ::selection { background:var(--accent); color:#000; }
     a { color:inherit; text-underline-offset:3px; }
-    a:hover { background:var(--red); color:#000; text-decoration:none; }
+    a:hover { background:var(--accent); color:#000; text-decoration:none; }
 
     /* ---------- hero ---------- */
 
@@ -76,22 +76,22 @@
       position:absolute; top:18px; left:20px; z-index:2;
       color:var(--dim); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
     }
-    .path b { color:var(--red); font-weight:400; }
+    .path b { color:var(--accent); font-weight:400; }
 
     /* the hero is a full screen with two lines on it; without this nobody
        knows the page continues */
     .more {
       margin-top:1.9em;
       font-size:12px; letter-spacing:.2em; text-transform:uppercase;
-      color:var(--red);
+      color:var(--accent);
     }
     .more a {
       color:inherit;
       text-decoration:none;
-      border-bottom:1px solid rgba(255,42,18,.4);
+      border-bottom:1px solid rgba(255,159,28,.42);
       padding-bottom:3px;
     }
-    .more a:hover { background:var(--red); color:#000; border-bottom-color:transparent; }
+    .more a:hover { background:var(--accent); color:#000; border-bottom-color:transparent; }
     /* a small nudge downward, so the cue reads as an instruction */
     .more .arrow { display:inline-block; animation:nudge 2.4s ease-in-out infinite; }
     @keyframes nudge {
@@ -109,7 +109,7 @@
       line-height:1;
       margin-bottom:.35em;
     }
-    h1 span { color:var(--red); }
+    h1 span { color:var(--accent); }
     .role { margin-bottom:0; }
     /* small tracked caps read as a category label framing the title below,
        rather than as a second job competing with it */
@@ -147,7 +147,7 @@
 
     h2 {
       font-size:11px; font-weight:400; letter-spacing:.24em; text-transform:uppercase;
-      color:var(--red);
+      color:var(--accent);
       border-top:1px solid var(--line);
       padding-top:12px;
       margin:3.2em 0 1.2em;
@@ -170,13 +170,13 @@
     }
     .feed::-webkit-scrollbar { width:12px; }
     .feed::-webkit-scrollbar-track { background:#131313; border-left:1px solid var(--line); }
-    .feed::-webkit-scrollbar-thumb { background:var(--red); border:3px solid #131313; }
-    .feed::-webkit-scrollbar-thumb:hover { background:#ff5030; }
+    .feed::-webkit-scrollbar-thumb { background:var(--accent); border:3px solid #131313; }
+    .feed::-webkit-scrollbar-thumb:hover { background:#ffb44a; }
 
     /* Firefox has no ::-webkit-scrollbar; give it the standard properties,
        scoped so Chrome never sees them. */
     @supports (-moz-appearance:none) {
-      .feed { scrollbar-width:thin; scrollbar-color:var(--red) #131313; }
+      .feed { scrollbar-width:thin; scrollbar-color:var(--accent) #131313; }
     }
 
     .feed ul { list-style:none; }
@@ -193,7 +193,7 @@
     .feed .head { display:block; margin-bottom:.5em; color:var(--fg); }
     .feed .src { color:var(--dim); font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
     .feed .tag {
-      color:var(--red); border:1px solid var(--line);
+      color:var(--accent); border:1px solid var(--line);
       font-size:9px; letter-spacing:.18em; text-transform:uppercase;
       padding:1px 5px; margin-left:6px;
     }
