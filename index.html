@@ -12,6 +12,7 @@
       --red:#ff2a12;
       --dim:#6f6a61;
       --line:#22211f;
+      --rail:340px;
     }
     * { box-sizing:border-box; margin:0; padding:0; }
     body {
@@ -23,42 +24,111 @@
       -webkit-font-smoothing:antialiased;
     }
     ::selection { background:var(--red); color:#000; }
-
-    main {
-      max-width:80ch;
-      margin:0 auto;
-      padding:44px 18px 90px;
-    }
-
-    a { color:var(--fg); text-underline-offset:3px; }
+    a { color:inherit; text-underline-offset:3px; }
     a:hover { background:var(--red); color:#000; text-decoration:none; }
 
+    /* ---------- hero ---------- */
+
+    .hero {
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-end;
+      padding:44px 18px 54px;
+      background:#0b0b0b url("hero.jpg") 74% 40% / cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::after {
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.55) 38%, rgba(0,0,0,.05) 68%),
+                 linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 40%);
+      pointer-events:none;
+    }
+    .hero .inner { position:relative; z-index:2; max-width:56ch; }
+
     .path {
+      position:absolute; top:16px; left:18px; z-index:2;
       color:var(--dim);
       font-size:11px;
       letter-spacing:.16em;
       text-transform:uppercase;
-      margin-bottom:34px;
     }
     .path b { color:var(--red); font-weight:400; }
 
     h1 {
-      font-size:clamp(1.7rem, 6vw, 2.6rem);
+      font-size:clamp(2rem, 7vw, 3.4rem);
       font-weight:400;
-      letter-spacing:-.02em;
-      line-height:1.05;
-      margin-bottom:.35em;
+      letter-spacing:-.03em;
+      line-height:1.02;
+      margin-bottom:.3em;
     }
     h1 span { color:var(--red); }
+    .role { color:var(--fg); margin-bottom:1.1em; }
+    .bio { color:var(--fg); max-width:46ch; }
 
-    .role {
-      color:var(--dim);
-      margin-bottom:1.6em;
+    /* ---------- the moving press feed ---------- */
+
+    .feed {
+      position:fixed;
+      top:0; right:0; bottom:0;
+      width:var(--rail);
+      z-index:4;
+      padding:16px 18px 16px 20px;
+      background:linear-gradient(270deg, rgba(6,6,7,.97) 0%, rgba(6,6,7,.95) 72%, rgba(6,6,7,.72) 92%, rgba(6,6,7,0) 100%);
+      backdrop-filter:blur(2px);
+      border-left:1px solid var(--line);
+      display:flex;
+      flex-direction:column;
     }
-    .bio { margin-bottom:2.6em; max-width:62ch; }
+    .feed h2 {
+      flex:none;
+      font-size:10px;
+      font-weight:400;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:var(--red);
+      padding-bottom:10px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+    }
+    .feed h2 em { font-style:normal; color:var(--dim); }
 
-    /* section headers read like directory names */
-    h2 {
+    .viewport {
+      flex:1 1 auto;
+      overflow:hidden;
+      position:relative;
+      /* fade the clip edges so items enter and leave rather than pop */
+      -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
+              mask-image:linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
+    }
+    .track { animation:roll 72s linear infinite; will-change:transform; }
+    .feed:hover .track,
+    .feed:focus-within .track { animation-play-state:paused; }
+    @keyframes roll {
+      from { transform:translateY(0); }
+      to   { transform:translateY(-50%); }
+    }
+
+    .track ul { list-style:none; }
+    .track li {
+      padding:16px 0;
+      border-bottom:1px dashed var(--line);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .track .n { color:var(--red); }
+    .track .hl { display:block; margin:.35em 0 .5em; }
+    .track .src { color:var(--dim); font-size:11px; letter-spacing:.04em; }
+
+    /* ---------- everything below the hero ---------- */
+
+    main {
+      max-width:80ch;
+      padding:0 18px 90px;
+    }
+    h3 {
       font-size:11px;
       font-weight:400;
       letter-spacing:.22em;
@@ -66,33 +136,11 @@
       color:var(--red);
       border-top:1px solid var(--line);
       padding-top:12px;
-      margin:2.8em 0 1.4em;
+      margin:3em 0 1.4em;
     }
-
     figure { margin:0 0 2.4em; }
-    figure.tall { max-width:46ch; }
-    figure img {
-      display:block;
-      width:100%;
-      height:auto;
-      border:1px solid var(--line);
-    }
-    figcaption {
-      color:var(--dim);
-      font-size:12px;
-      letter-spacing:.05em;
-      margin-top:.6em;
-    }
-
-    .quote {
-      display:grid;
-      grid-template-columns:3ch 1fr;
-      gap:0 1.4ch;
-      margin-bottom:1.9em;
-    }
-    .quote .n { color:var(--red); }
-    .quote p { margin-bottom:.3em; }
-    .quote .src { color:var(--dim); font-size:12px; }
+    figure img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+    figcaption { color:var(--dim); font-size:12px; margin-top:.6em; }
 
     .links { display:grid; grid-template-columns:max-content 1fr; gap:.35em 2.5ch; }
     .links dt { color:var(--dim); }
@@ -107,102 +155,150 @@
       text-transform:uppercase;
     }
 
-    @media (max-width:600px) {
+    /* keep body copy clear of the rail on wide screens */
+    @media (min-width:901px) {
+      .hero { padding-right:calc(var(--rail) + 40px); }
+      main  { padding-right:calc(var(--rail) + 40px); max-width:calc(80ch + var(--rail)); }
+    }
+
+    /* ---------- narrow screens: the rail becomes a normal section ---------- */
+    @media (max-width:900px) {
       body { font-size:14px; }
-      main { padding:34px 14px 64px; }
-      .quote { grid-template-columns:1fr; gap:0; }
-      .quote .n { margin-bottom:.2em; }
-      .links { grid-template-columns:1fr; gap:0 0; }
-      .links dd { margin-bottom:.7em; }
+      .hero { min-height:92vh; padding:44px 14px 40px; background-position:68% 34%; }
+      .hero::after {
+        background:linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.45) 42%, rgba(0,0,0,0) 72%),
+                   linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 60%);
+      }
+      main { padding:0 14px 64px; }
+      .feed {
+        position:static;
+        width:auto;
+        padding:0 14px;
+        background:none;
+        border-left:0;
+        margin-top:2.6em;
+      }
+      .feed h2 { margin-bottom:.2em; }
+      .viewport { overflow:visible; -webkit-mask-image:none; mask-image:none; }
+      .track { animation:none; }
+      .track ul + ul { display:none; }   /* the duplicate only exists for the loop */
+      .track li { font-size:14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .track { animation:none; }
+      .viewport { overflow-y:auto; }
     }
   </style>
 </head>
 <body>
-<main>
 
-  <p class="path">index.html<b> // </b>public</p>
-
-  <h1>Mason <span>Lynaugh</span></h1>
-  <p class="role">executive director &middot; stand with crypto</p>
-  <p class="bio">atx dao cofounder. forbes 30 under 30, local austin.<br />
-     ground game for 3m+ crypto advocates.</p>
-
-  <figure>
-    <img src="hero.jpg" alt="Mason Lynaugh walking a gravel road in the Westfjords, Iceland"
-         width="2000" height="1335" />
-    <figcaption>westfjords, iceland &middot; 35mm</figcaption>
-  </figure>
-
-  <h2>Press</h2>
-
-  <div class="quote">
-    <span class="n">01</span>
-    <div>
-      <p>"2026 is where we prove that the crypto voter is a defining constituency for the next generation."</p>
-      <p class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; Sep 2025</p>
+  <section class="hero">
+    <p class="path">index.html<b> // </b>public</p>
+    <div class="inner">
+      <h1>Mason <span>Lynaugh</span></h1>
+      <p class="role">executive director &middot; stand with crypto</p>
+      <p class="bio">atx dao cofounder. forbes 30 under 30, local austin.<br />
+         ground game for 3m+ crypto advocates.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="quote">
-    <span class="n">02</span>
-    <div>
-      <p>"The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto."</p>
-      <p class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; May 2026</p>
+  <aside class="feed" aria-label="Press mentions, most recent first">
+    <h2><span>Press</span><em>most recent</em></h2>
+    <div class="viewport">
+      <div class="track">
+
+        <ul>
+          <li>
+            <span class="n">01</span>
+            <span class="hl">"In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle."</span>
+            <span class="src"><a href="https://www.investing.com/news/stock-market-news/coinbasebacked-crypto-advocacy-group-endorses-32-us-midterm-candidates-4873491">Reuters</a> &middot; 24 Aug 2026</span>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <span class="hl">"They overlook crypto voters at their own peril."</span>
+            <span class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; 24 Aug 2026</span>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <span class="hl">"This year crypto voters are poised to play a powerful and decisive role at the ballot box."</span>
+            <span class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; Consensus Miami 2026</span>
+          </li>
+          <li>
+            <span class="n">04</span>
+            <span class="hl">"The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto."</span>
+            <span class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; 14 May 2026</span>
+          </li>
+          <li>
+            <span class="n">05</span>
+            <span class="hl">"2026 is where we prove that the crypto voter is a defining constituency for the next generation."</span>
+            <span class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; Sep 2025</span>
+          </li>
+        </ul>
+
+        <ul aria-hidden="true">
+          <li>
+            <span class="n">01</span>
+            <span class="hl">"In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle."</span>
+            <span class="src">Reuters &middot; 24 Aug 2026</span>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <span class="hl">"They overlook crypto voters at their own peril."</span>
+            <span class="src">CoinDesk &middot; 24 Aug 2026</span>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <span class="hl">"This year crypto voters are poised to play a powerful and decisive role at the ballot box."</span>
+            <span class="src">crypto.news &middot; Consensus Miami 2026</span>
+          </li>
+          <li>
+            <span class="n">04</span>
+            <span class="hl">"The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto."</span>
+            <span class="src">The Block &middot; 14 May 2026</span>
+          </li>
+          <li>
+            <span class="n">05</span>
+            <span class="hl">"2026 is where we prove that the crypto voter is a defining constituency for the next generation."</span>
+            <span class="src">Punchbowl News &middot; Sep 2025</span>
+          </li>
+        </ul>
+
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <figure>
-    <img src="consensus.jpg" alt="Mason Lynaugh speaking on a panel at Consensus Miami"
-         width="2000" height="1125" loading="lazy" />
-    <figcaption>consensus miami &middot; 2026</figcaption>
-  </figure>
+  <main>
 
-  <div class="quote">
-    <span class="n">03</span>
-    <div>
-      <p>"This year crypto voters are poised to play a powerful and decisive role at the ballot box."</p>
-      <p class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; Consensus Miami 2026</p>
-    </div>
-  </div>
+    <figure>
+      <img src="consensus.jpg" alt="Mason Lynaugh speaking on a panel at Consensus Miami"
+           width="2000" height="1125" loading="lazy" />
+      <figcaption>consensus miami &middot; 2026</figcaption>
+    </figure>
 
-  <div class="quote">
-    <span class="n">04</span>
-    <div>
-      <p>"They overlook crypto voters at their own peril."</p>
-      <p class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; Aug 2026</p>
-    </div>
-  </div>
+    <h3>Links</h3>
+    <dl class="links">
+      <dt>stand with crypto</dt>
+      <dd><a href="https://www.standwithcrypto.org">standwithcrypto.org</a></dd>
+      <dt>x</dt>
+      <dd><a href="https://x.com/masonlynaugh">x.com/masonlynaugh</a></dd>
+      <dt>linkedin</dt>
+      <dd><a href="https://www.linkedin.com/in/masonlynaugh">linkedin.com/in/masonlynaugh</a></dd>
+      <dt>github</dt>
+      <dd><a href="https://github.com/masonleenaugh">github.com/masonleenaugh</a></dd>
+    </dl>
 
-  <figure class="tall">
-    <img src="portrait.jpg" alt="Portrait of Mason Lynaugh"
-         width="900" height="1185" loading="lazy" />
-    <figcaption>stand with crypto &middot; portrait</figcaption>
-  </figure>
+    <h3>Also</h3>
+    <dl class="links">
+      <dt>announcement</dt>
+      <dd><a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">stand with crypto names new executive director</a></dd>
+      <dt>forbes</dt>
+      <dd><a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">30 under 30, local austin</a></dd>
+    </dl>
 
-  <h2>Links</h2>
+    <footer>uncorrected proof &middot; 2026</footer>
 
-  <dl class="links">
-    <dt>stand with crypto</dt>
-    <dd><a href="https://www.standwithcrypto.org">standwithcrypto.org</a></dd>
-    <dt>x</dt>
-    <dd><a href="https://x.com/masonlynaugh">x.com/masonlynaugh</a></dd>
-    <dt>linkedin</dt>
-    <dd><a href="https://www.linkedin.com/in/masonlynaugh">linkedin.com/in/masonlynaugh</a></dd>
-    <dt>github</dt>
-    <dd><a href="https://github.com/masonleenaugh">github.com/masonleenaugh</a></dd>
-  </dl>
+  </main>
 
-  <h2>Also</h2>
-
-  <dl class="links">
-    <dt>announcement</dt>
-    <dd><a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">stand with crypto names new executive director</a></dd>
-    <dt>forbes</dt>
-    <dd><a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">30 under 30, local austin</a></dd>
-  </dl>
-
-  <footer>uncorrected proof &middot; 2026</footer>
-
-</main>
 </body>
 </html>
