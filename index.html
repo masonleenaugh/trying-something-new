@@ -3,320 +3,417 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MASON LYNAUGH — /index.html</title>
-  <link rel="stylesheet" href="hero.css" />
-  <meta name="description" content="Mason Lynaugh, Executive Director of Stand With Crypto." />
+  <title>mason@lynaugh — ~/public</title>
+  <meta name="description" content="Mason Lynaugh, Executive Director of Stand With Crypto. ATX DAO cofounder. Forbes 30 Under 30 Local Austin." />
   <style>
-    :root { --paper:#f3eee2; --red:#ff2a12; --mute:#9a9386; }
+    :root {
+      --bg:#0a0a0b;
+      --fg:#d9d4c8;
+      --red:#ff2a12;
+      --dim:#6f6a61;
+      --line:#22211f;
+    }
     * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { min-height:100%; background:#000; color:var(--paper); }
+    html, body { height:100%; }
     body {
-      font-family:"Courier New", Courier, ui-monospace, monospace;
-      cursor:crosshair;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size:15px;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      overflow:hidden;
     }
     ::selection { background:var(--red); color:#000; }
-    a { color:inherit; }
-    a:hover { background:var(--red); color:#000; }
-    .hero {
-      min-height:100vh;
-      position:relative;
-      overflow:hidden;
-      background-color:#0b0b0b;
-      background-size:cover !important;
-      background-position:82% 38% !important;
-      background-repeat:no-repeat !important;
-    }
-    .hero::after {
+
+    /* faint CRT texture — subtle enough to read through */
+    body::after {
       content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.28) 34%, rgba(0,0,0,0) 52%);
+      position:fixed; inset:0; z-index:5;
       pointer-events:none;
+      background:
+        repeating-linear-gradient(180deg, rgba(255,255,255,.030) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%);
     }
-    .seam {
-      position:absolute; top:0; bottom:0; left:46%;
-      width:1px; background:var(--red);
-      z-index:3; pointer-events:none; opacity:.85;
-    }
-    .col {
-      position:absolute;
-      left:0; top:0; bottom:0;
-      width:46%;
-      max-width:46%;
-      overflow:hidden;
-      z-index:2;
-      padding:16px 12px 20px 16px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .file {
-      font-size:10px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--red);
-    }
-    nav { margin-top:10px; }
-    nav a {
+
+    .bar {
+      position:fixed; top:0; left:0; right:0; z-index:4;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      padding:9px 14px;
       font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      text-decoration:underline;
-      text-underline-offset:3px;
-      margin-right:14px;
-    }
-    h1 {
-      font-family:Times, "Times New Roman", serif;
-      font-size:clamp(2.6rem, 7.2vw, 6.2rem);
-      font-weight:900;
-      font-style:italic;
-      line-height:.78;
-      letter-spacing:-.07em;
-      text-transform:uppercase;
-      margin-top:6vh;
-    }
-    h1 b {
-      display:block;
-      color:var(--red);
-      font-style:normal;
-      transform:translateX(-4px) skewX(-8deg);
-      transform-origin:left center;
-    }
-    .role {
-      margin-top:14px;
-      font-size:11px;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-    }
-    .meta {
-      font-family:Times, "Times New Roman", serif;
-      font-style:italic;
-      font-size:clamp(1rem, 2.2vw, 1.35rem);
-      line-height:1.15;
-      max-width:16em;
-      margin-top:8px;
-    }
-    .badge {
-      display:inline-block;
-      margin-top:18px;
-      border:2px solid var(--red);
-      color:var(--red);
-      padding:7px 11px 5px;
-      font-size:10px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      transform:rotate(-9deg);
-      width:max-content;
-    }
-    .vert {
-      position:absolute;
-      left:6px; bottom:18%;
-      writing-mode:vertical-rl;
-      transform:rotate(180deg);
-      font-size:10px;
-      letter-spacing:.4em;
-      text-transform:uppercase;
-      color:var(--red);
-      z-index:4;
-    }
-    .bottom {
-      font-size:10px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--mute);
-    }
-    .bottom a { color:var(--paper); }
-    .tag {
-      display:flex;
-      align-items:flex-end;
-      gap:14px;
-      margin-top:18px;
-    }
-    .mug {
-      width:112px;
-      height:140px;
-      object-fit:cover;
-      object-position:50% 22%;
-      border:1px solid var(--red);
-      flex:none;
-      display:block;
-      filter:grayscale(1) contrast(1.12);
-      transition:filter .18s;
-    }
-    .mug:hover { filter:none; }
-    .band {
-      position:relative;
-      height:42vh;
-      min-height:220px;
-      background:#000 url("consensus.jpg") 50% 34% / cover no-repeat;
-      border-top:8px solid var(--red);
-    }
-    .band::after {
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,0) 38%, rgba(0,0,0,.72) 100%);
-      pointer-events:none;
-    }
-    .band .cap {
-      position:absolute;
-      left:16px; bottom:14px;
-      z-index:2;
-      font-size:10px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--paper);
-    }
-    .press {
-      background:#000;
-      border-top:none;
-      padding:0;
-    }
-    .press h2 {
-      font-size:10px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:var(--red);
-      padding:18px 16px 0;
-    }
-    .quotes a {
-      display:grid;
-      grid-template-columns:48px 1fr;
-      gap:12px;
-      padding:28px 16px;
-      border-bottom:1px dashed var(--mute);
-      text-decoration:none;
-    }
-    .quotes a:nth-child(odd) { background:#0a0a0a; }
-    .quotes a:hover { background:var(--red); color:#000; }
-    .n {
-      font-size:11px;
-      letter-spacing:.16em;
-      color:var(--red);
-      padding-top:6px;
-    }
-    .quotes a:hover .n { color:#000; }
-    q {
-      display:block;
-      quotes:none;
-      font-family:Times, "Times New Roman", serif;
-      font-style:italic;
-      font-size:clamp(1.4rem, 3.6vw, 2.4rem);
-      line-height:1.05;
-      letter-spacing:-.03em;
-      max-width:22em;
-    }
-    .src {
-      display:block;
-      margin-top:10px;
-      font-size:10px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--mute);
-    }
-    .quotes a:hover .src { color:#000; }
-    footer {
-      padding:22px 16px 48px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      font-size:10px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color:var(--mute);
+      color:var(--dim);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
     }
-    footer a { color:var(--paper); }
-    @media (max-width:700px) {
-      .hero { background-position:100% 18% !important; }
-      .hero::after {
-        background:linear-gradient(180deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.35) 28%, rgba(0,0,0,0) 52%);
-      }
-      .col {
-        width:100%;
-        max-width:none;
-        height:auto;
-        bottom:auto;
-        padding:16px 38% 16px 14px;
-        justify-content:flex-start;
-        gap:14px;
-      }
-      .seam { display:none; }
-      h1 { font-size:clamp(2.2rem, 11vw, 3.2rem); margin-top:10px; }
-      .meta { font-size:.95rem; max-width:14em; }
-      .vert { display:none; }
-      .badge { margin-top:0; }
-      .mug { width:88px; height:110px; }
-      .band { height:30vh; min-height:170px; }
+    .bar b { color:var(--red); font-weight:400; }
+
+    .term {
+      height:100%;
+      overflow-y:auto;
+      overflow-x:hidden;
+      padding:52px 16px 28px;
+      cursor:text;
+      -webkit-overflow-scrolling:touch;
+    }
+    .wrap { max-width:74ch; }
+
+    .cmd { color:var(--red); }
+    .cmd .ps1 { color:var(--dim); margin-right:.6ch; }
+    .out { white-space:pre-wrap; word-break:break-word; }
+    .out.gap { margin-bottom:1.05em; }
+    .dim { color:var(--dim); }
+    .key { color:var(--red); }
+    a { color:var(--fg); text-underline-offset:3px; }
+    a:hover { background:var(--red); color:#000; text-decoration:none; }
+
+    .src { color:var(--dim); }
+
+    .shot {
+      display:block;
+      max-width:min(540px, 100%);
+      height:auto;
+      margin:.55em 0 .3em;
+      border:1px solid var(--line);
+    }
+
+    /* live input line */
+    .line { display:flex; align-items:baseline; gap:.6ch; }
+    .line .ps1 { color:var(--dim); flex:none; }
+    #in {
+      flex:1 1 auto;
+      min-width:0;
+      background:transparent;
+      border:0;
+      outline:0;
+      color:var(--red);
+      font:inherit;
+      caret-color:var(--red);
+      padding:0;
+    }
+    .caret {
+      display:inline-block;
+      width:.62ch; height:1.05em;
+      background:var(--red);
+      transform:translateY(.18em);
+      animation:blink 1.05s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity:0; } }
+    .line.busy #in { display:none; }
+    .line.done .caret { display:none; }
+
+    @media (max-width:600px) {
+      body { font-size:14px; }
+      #in { font-size:16px; }  /* keeps iOS from zooming on focus */
+      .term { padding:50px 13px 24px; }
+      .bar span:last-child { display:none; }  /* no room for the subtitle */
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .caret { animation:none; }
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <div class="seam" aria-hidden="true"></div>
-    <p class="vert">uncorrected proof · 2026</p>
-    <div class="col">
-      <div>
-        <p class="file">INDEX.HTML // PUBLIC</p>
-        <nav>
-          <a href="https://www.standwithcrypto.org">SWC</a>
-          <a href="https://x.com/masonlynaugh">X</a>
-          <a href="https://www.linkedin.com/in/masonlynaugh">LinkedIn</a>
-        </nav>
+  <div class="bar">
+    <span>mason<b>@</b>lynaugh — ~/public</span>
+    <span class="dim">executive director · stand with crypto</span>
+  </div>
+
+  <main class="term" id="term" role="log" aria-live="polite">
+    <div class="wrap" id="wrap">
+      <div id="scroll"></div>
+      <div class="line busy" id="line">
+        <span class="ps1">$</span>
+        <input id="in" autocomplete="off" autocorrect="off" autocapitalize="off"
+               spellcheck="false" aria-label="terminal input" />
+        <span class="caret" id="caret"></span>
       </div>
-      <div>
-        <h1>Mason<b>Lynaugh</b></h1>
-        <p class="role">// executive director</p>
-        <p class="meta">ATX DAO cofounder. Forbes 30 Under 30 Local Austin. Ground game for 3M+ crypto advocates.</p>
-        <div class="tag">
-          <img class="mug" src="portrait.jpg" alt="Mason Lynaugh" width="480" height="632" />
-          <p class="badge">trying something new</p>
-        </div>
-      </div>
-      <p class="bottom"><a href="#press">quoted ↓</a></p>
     </div>
-  </section>
-  <section class="band">
-    <p class="cap">Consensus Miami &middot; 2026</p>
-  </section>
-  <section class="press" id="press">
-    <h2>Quoted in — do not bury</h2>
-    <div class="quotes">
-      <a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">
-        <span class="n">01</span>
-        <span>
-          <q>2026 is where we prove that the crypto voter is a defining constituency for the next generation.</q>
-          <span class="src">Punchbowl News · Sep 2025</span>
-        </span>
-      </a>
-      <a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">
-        <span class="n">02</span>
-        <span>
-          <q>The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.</q>
-          <span class="src">The Block · May 2026</span>
-        </span>
-      </a>
-      <a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">
-        <span class="n">03</span>
-        <span>
-          <q>This year crypto voters are poised to play a powerful and decisive role at the ballot box.</q>
-          <span class="src">crypto.news · Consensus Miami 2026</span>
-        </span>
-      </a>
-      <a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">
-        <span class="n">04</span>
-        <span>
-          <q>They overlook crypto voters at their own peril.</q>
-          <span class="src">CoinDesk · Aug 2026</span>
-        </span>
-      </a>
+  </main>
+
+  <noscript>
+    <div style="padding:60px 16px;max-width:74ch">
+      <h1 style="font-size:1.4rem;margin-bottom:.6em">Mason Lynaugh</h1>
+      <p style="margin-bottom:1em">Executive Director, Stand With Crypto. ATX DAO cofounder.
+      Forbes 30 Under 30 Local Austin. Ground game for 3M+ crypto advocates.</p>
+      <p><a href="https://www.standwithcrypto.org">Stand With Crypto</a> ·
+         <a href="https://x.com/masonlynaugh">X</a> ·
+         <a href="https://www.linkedin.com/in/masonlynaugh">LinkedIn</a> ·
+         <a href="https://github.com/masonleenaugh">GitHub</a></p>
     </div>
-    <footer>
-      <div>
-        <a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">ED announcement</a>
-        &nbsp;/&nbsp;
-        <a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">Forbes 30U30</a>
-      </div>
-      <a href="https://github.com/masonleenaugh">github.com/masonleenaugh</a>
-    </footer>
-  </section>
+  </noscript>
+
+<script>
+(function () {
+  "use strict";
+
+  var term   = document.getElementById("term");
+  var scroll = document.getElementById("scroll");
+  var line   = document.getElementById("line");
+  var input  = document.getElementById("in");
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var PRESS = [
+    { n:"01", q:"2026 is where we prove that the crypto voter is a defining constituency for the next generation.",
+      src:"Punchbowl News · Sep 2025",
+      url:"https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/" },
+    { n:"02", q:"The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.",
+      src:"The Block · May 2026",
+      url:"https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341" },
+    { n:"03", q:"This year crypto voters are poised to play a powerful and decisive role at the ballot box.",
+      src:"crypto.news · Consensus Miami 2026",
+      url:"https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/" },
+    { n:"04", q:"They overlook crypto voters at their own peril.",
+      src:"CoinDesk · Aug 2026",
+      url:"https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year" }
+  ];
+
+  var LINKS = [
+    ["stand with crypto", "https://www.standwithcrypto.org"],
+    ["x",                 "https://x.com/masonlynaugh"],
+    ["linkedin",          "https://www.linkedin.com/in/masonlynaugh"],
+    ["github",            "https://github.com/masonleenaugh"]
+  ];
+
+  var PHOTOS = {
+    "iceland":   { file:"hero.jpg",      cap:"westfjords, iceland · 35mm" },
+    "consensus": { file:"consensus.jpg", cap:"consensus miami · 2026" },
+    "portrait":  { file:"portrait.jpg",  cap:"stand with crypto · portrait" }
+  };
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c];
+    });
+  }
+  function link(href, text) {
+    return '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + "</a>";
+  }
+  function atBottom() {
+    return term.scrollHeight - term.scrollTop - term.clientHeight < 40;
+  }
+  function toBottom() { term.scrollTop = term.scrollHeight; }
+
+  function emit(html, gap) {
+    var d = document.createElement("div");
+    d.className = "out" + (gap === false ? "" : " gap");
+    d.innerHTML = html;
+    scroll.appendChild(d);
+    toBottom();
+    return d;
+  }
+  function echoCmd(text) {
+    var d = document.createElement("div");
+    d.className = "cmd";
+    d.innerHTML = '<span class="ps1">$</span>' + esc(text);
+    scroll.appendChild(d);
+    toBottom();
+  }
+
+  // ---- commands ------------------------------------------------------------
+
+  var COMMANDS = {
+    help: function () {
+      var rows = [
+        ["whoami",      "who is this"],
+        ["about",       "the short version"],
+        ["press",       "what people quoted"],
+        ["press <n>",   "one quote in full (01–04)"],
+        ["photos",      "list the photographs"],
+        ["open <name>", "view one (iceland, consensus, portrait)"],
+        ["links",       "where else to find me"],
+        ["clear",       "wipe the screen"]
+      ];
+      return rows.map(function (r) {
+        return '<span class="key">' + r[0] + "</span>" +
+               " ".repeat(Math.max(1, 14 - r[0].length)) +
+               '<span class="dim">' + r[1] + "</span>";
+      }).join("\n");
+    },
+
+    whoami: function () { return "mason lynaugh"; },
+
+    role: function () { return "executive director · stand with crypto"; },
+
+    about: function () {
+      return "executive director at stand with crypto.\n" +
+             "atx dao cofounder. forbes 30 under 30, local austin.\n" +
+             "ground game for 3m+ crypto advocates.";
+    },
+
+    press: function (arg) {
+      if (arg) {
+        var hit = PRESS.filter(function (p) { return p.n === arg || p.n === ("0" + arg) || String(Number(p.n)) === arg; })[0];
+        if (!hit) return '<span class="dim">no such entry. try: press 01</span>';
+        return '"' + esc(hit.q) + '"\n' +
+               '<span class="src">— ' + esc(hit.src) + " · " + link(hit.url, "read") + "</span>";
+      }
+      return PRESS.map(function (p) {
+        return '<span class="key">' + p.n + "</span>  " + esc(p.q) +
+               '\n      <span class="src">' + esc(p.src) + " · " + link(p.url, "read") + "</span>";
+      }).join("\n\n") + '\n\n<span class="dim">press &lt;n&gt; for one on its own</span>';
+    },
+
+    links: function () {
+      return LINKS.map(function (l) {
+        return '<span class="key">' + l[0] + "</span>" +
+               " ".repeat(Math.max(1, 18 - l[0].length)) + link(l[1], l[1].replace(/^https?:\/\//, ""));
+      }).join("\n");
+    },
+
+    photos: function () {
+      return Object.keys(PHOTOS).map(function (k) {
+        return '<span class="key">' + k + "</span>" +
+               " ".repeat(Math.max(1, 12 - k.length)) +
+               '<span class="dim">' + PHOTOS[k].cap + "</span>";
+      }).join("\n") + '\n\n<span class="dim">open &lt;name&gt; to view</span>';
+    },
+
+    open: function (arg) {
+      var p = PHOTOS[(arg || "").toLowerCase()];
+      if (!p) return '<span class="dim">no such photo. try: photos</span>';
+      return '<img class="shot" src="' + p.file + '" alt="' + esc(p.cap) + '" loading="lazy" />' +
+             '<span class="dim">' + esc(p.cap) + "</span>";
+    },
+
+    ls: function (arg) {
+      if (arg && /^press/.test(arg)) {
+        return PRESS.map(function (p) { return p.n + "_" + p.src.split(" ·")[0].toLowerCase().replace(/[^a-z.]+/g, "") + ".txt"; }).join("\n");
+      }
+      return "about.txt   press/   photos/   links.txt";
+    },
+
+    clear: function () { scroll.innerHTML = ""; return null; },
+
+    sudo: function () { return '<span class="dim">nice try.</span>'; },
+    exit: function () { return '<span class="dim">there is no exit. that is rather the point.</span>'; }
+  };
+
+  COMMANDS.bio = COMMANDS.about;
+  COMMANDS.contact = COMMANDS.links;
+  COMMANDS.cat = function (arg) {
+    var a = (arg || "").replace(/\.txt$/, "");
+    if (a === "about") return COMMANDS.about();
+    if (a === "links") return COMMANDS.links();
+    if (a === "role")  return COMMANDS.role();
+    return '<span class="dim">cat: ' + esc(arg || "") + ": no such file</span>";
+  };
+
+  function run(raw) {
+    var text = raw.trim();
+    if (!text) return;
+    var parts = text.split(/\s+/);
+    var name  = parts[0].toLowerCase();
+    var arg   = parts.slice(1).join(" ");
+
+    var fn = COMMANDS[name];
+    if (!fn) {
+      emit('<span class="dim">' + esc(name) + ": command not found. try " + '</span><span class="key">help</span>');
+      return;
+    }
+    var out = fn(arg);
+    if (out !== null && out !== undefined) emit(out);
+  }
+
+  // ---- boot sequence -------------------------------------------------------
+
+  var BOOT = [
+    { cmd:"whoami", out:function () { return COMMANDS.whoami(); } },
+    { cmd:"cat about.txt", out:function () { return COMMANDS.about(); } }
+  ];
+
+  var typing = false, skip = false;
+
+  function typeInto(el, text, speed) {
+    return new Promise(function (resolve) {
+      if (reduced || skip) { el.textContent = text; resolve(); return; }
+      var i = 0;
+      (function step() {
+        if (skip) { el.textContent = text; toBottom(); resolve(); return; }
+        el.textContent = text.slice(0, ++i);
+        if (atBottom()) toBottom();
+        if (i >= text.length) { resolve(); return; }
+        setTimeout(step, speed + Math.random() * speed);
+      })();
+    });
+  }
+
+  function pause(ms) {
+    return new Promise(function (r) { setTimeout(r, (reduced || skip) ? 0 : ms); });
+  }
+
+  async function boot() {
+    typing = true;
+    for (var i = 0; i < BOOT.length; i++) {
+      var row = document.createElement("div");
+      row.className = "cmd";
+      var ps = document.createElement("span");
+      ps.className = "ps1";
+      ps.textContent = "$";
+      var body = document.createElement("span");
+      row.appendChild(ps); row.appendChild(body);
+      scroll.appendChild(row);
+      toBottom();
+
+      await typeInto(body, BOOT[i].cmd, 26);
+      await pause(160);
+      emit(BOOT[i].out());
+      await pause(220);
+    }
+    emit('<span class="dim">type </span><span class="key">help</span><span class="dim"> for what else is here</span>');
+    typing = false;
+    line.classList.remove("busy");
+    focusInput();
+  }
+
+  // ---- input plumbing ------------------------------------------------------
+
+  var history = [], hpos = -1;
+
+  function focusInput() {
+    if (!typing) input.focus({ preventScroll:true });
+  }
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      var v = input.value;
+      echoCmd(v);
+      input.value = "";
+      if (v.trim()) { history.push(v); hpos = history.length; }
+      run(v);
+      toBottom();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (hpos > 0) { hpos--; input.value = history[hpos]; }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (hpos < history.length - 1) { hpos++; input.value = history[hpos]; }
+      else { hpos = history.length; input.value = ""; }
+    } else if (e.key === "l" && e.ctrlKey) {
+      e.preventDefault();
+      scroll.innerHTML = "";
+    }
+  });
+
+  // tapping anywhere returns focus to the prompt (and opens the keyboard on phones)
+  term.addEventListener("click", function (e) {
+    if (window.getSelection().toString()) return;   // don't steal focus mid-copy
+    if (e.target.closest("a")) return;
+    focusInput();
+  });
+
+  // any key or click during the boot sequence skips it
+  function requestSkip() { if (typing) skip = true; }
+  document.addEventListener("keydown", requestSkip, { once:false });
+  document.addEventListener("click", requestSkip);
+
+  boot();
+})();
+</script>
 </body>
 </html>
