@@ -41,6 +41,9 @@ AGGREGATORS = {
 }
 OWNED = {"standwithcrypto.org"}
 
+# Name collisions and unrelated listings that match the string but not the person.
+NOISE = ("ticketnews.com", "eclipse festival")
+
 
 def get(url, timeout=45):
     req = urllib.request.Request(url, headers=UA)
@@ -48,7 +51,16 @@ def get(url, timeout=45):
         return r.read().decode("utf-8", "replace")
 
 
-def google_news(query):
+def google_news(query, after=None, before=None):
+    """One call returns at most ~10 items, so callers window the query.
+
+    Without after/before you only ever see the most recent handful, which is
+    how a whole year of earlier coverage stays invisible.
+    """
+    if after:
+        query += " after:%s" % after
+    if before:
+        query += " before:%s" % before
     url = ("https://news.google.com/rss/search?q="
            + urllib.parse.quote(query) + "&hl=en-US&gl=US&ceid=US:en")
     try:
@@ -77,10 +89,12 @@ def google_news(query):
     return out
 
 
-def gdelt(query):
+def gdelt(query, since):
     params = {
         "query": query, "mode": "ArtList", "maxrecords": "250",
         "format": "json", "sort": "DateDesc",
+        "startdatetime": since.strftime("%Y%m%d000000"),
+        "enddatetime": datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S"),
     }
     qs = urllib.parse.urlencode(params)
     for scheme in ("https", "http"):          # https often hangs; http works
@@ -115,16 +129,43 @@ def norm(t):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
+    ap.add_argument("--since", default="2025-01-01",
+                    help="ignore anything published before this date (YYYY-MM-DD)")
     args = ap.parse_args()
 
+    since = datetime.strptime(args.since, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    floor = since.strftime("%Y%m%d")
+
     items = []
-    print("google news: \"%s\"" % NAME, file=sys.stderr)
+
+    # walk quarterly windows so older coverage is not buried by the cap
+    win = since
+    now = datetime.now(timezone.utc)
+    while win < now:
+        nxt = win + timedelta(days=92)
+        a, b = win.strftime("%Y-%m-%d"), min(nxt, now).strftime("%Y-%m-%d")
+        print("google news: %s .. %s" % (a, b), file=sys.stderr)
+        for q in ['"%s"' % NAME] + EXTRA_QUERIES:
+            items += google_news(q, after=a, before=b)
+        win = nxt
+
+    print("google news: unwindowed", file=sys.stderr)
     items += google_news('"%s"' % NAME)
-    print("gdelt: \"%s\"" % NAME, file=sys.stderr)
-    items += gdelt('"%s"' % NAME)
+    print("gdelt: \"%s\" since %s" % (NAME, args.since), file=sys.stderr)
+    items += gdelt('"%s"' % NAME, since)
     for q in EXTRA_QUERIES:
         print("gdelt: %s" % q, file=sys.stderr)
-        items += gdelt(q)
+        items += gdelt(q, since)
+
+    # Google News ignores the window, so enforce the floor here. Undated rows
+    # are kept rather than silently dropped.
+    before = len(items)
+    items = [i for i in items if not i["date"] or i["date"] >= floor]
+    if before != len(items):
+        print("dropped %d published before %s" % (before - len(items), args.since), file=sys.stderr)
+
+    items = [i for i in items
+             if not any(n in (i["url"] + " " + i["title"]).lower() for n in NOISE)]
 
     # one bucket per story, so wire copies collapse
     groups = defaultdict(list)

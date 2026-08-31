@@ -5,386 +5,285 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MASON LYNAUGH</title>
   <meta name="description" content="Mason Lynaugh, Executive Director of Stand With Crypto. ATX DAO cofounder. Forbes 30 Under 30 Local Austin." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Archivo+Black&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink:#111;
-      --paper:#fffdf5;
-      --red:#e8002d;
-      --yellow:#ffd400;
-      --blue:#0b6bd6;
-      --sky:#7fd4f5;
-      --display:"Bangers", Impact, "Haettenschweiler", sans-serif;
-      --heavy:"Archivo Black", Impact, sans-serif;
-      --body:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --bg:#0a0a0b;
+      --fg:#d9d4c8;
+      --red:#ff2a12;
+      --dim:#6f6a61;
+      --line:#232220;
     }
     * { box-sizing:border-box; margin:0; padding:0; }
-
     body {
-      font-family:var(--body);
+      background:var(--bg);
+      color:var(--fg);
+      font-family:ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
       font-size:15px;
-      line-height:1.55;
-      color:var(--ink);
-      background-color:var(--yellow);
-      /* ben-day dots */
-      background-image:radial-gradient(var(--red) 21%, transparent 22%);
-      background-size:14px 14px;
-      padding:20px 0 70px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
     }
-    ::selection { background:var(--blue); color:#fff; }
+    ::selection { background:var(--red); color:#000; }
+    a { color:inherit; text-underline-offset:3px; }
+    a:hover { background:var(--red); color:#000; text-decoration:none; }
 
-    .page { max-width:1040px; margin:0 auto; padding:0 16px; }
+    /* ---------- hero ---------- */
 
-    /* ---------- panels ---------- */
-
-    .panel {
-      background:var(--paper);
-      border:4px solid var(--ink);
-      box-shadow:8px 8px 0 var(--ink);
-      margin-bottom:34px;
+    .hero {
       position:relative;
-      overflow:hidden;
-    }
-    .panel.tilt-l { transform:rotate(-.7deg); }
-    .panel.tilt-r { transform:rotate(.6deg); }
-
-    /* yellow caption box, the "MEANWHILE..." device */
-    .caption {
-      position:absolute;
-      z-index:3;
-      background:var(--yellow);
-      border:3px solid var(--ink);
-      font-family:var(--display);
-      font-size:clamp(.95rem, 2vw, 1.3rem);
-      letter-spacing:.04em;
-      padding:5px 12px 3px;
-      line-height:1.15;
-      max-width:62%;
-      box-shadow:4px 4px 0 rgba(0,0,0,.85);
-    }
-    .caption.tl { top:14px; left:14px; }
-    .caption.bl { bottom:14px; left:14px; }
-    .caption.br { right:14px; bottom:14px; }
-
-    /* ---------- title panel ---------- */
-
-    .hero-title {
-      background:var(--sky);
-      /* radiating speed lines behind the logotype */
-      background-image:repeating-conic-gradient(
-        from 0deg at 50% 58%,
-        rgba(255,255,255,.85) 0deg 5deg, transparent 5deg 12deg);
-      text-align:center;
-      padding:34px 18px 30px;
-    }
-    h1 {
-      font-family:var(--display);
-      font-size:clamp(3rem, 13vw, 8rem);
-      line-height:.86;
-      letter-spacing:.02em;
-      color:var(--paper);
-      -webkit-text-stroke:3px var(--ink);
-      text-shadow:6px 6px 0 var(--red), 10px 10px 0 var(--ink);
-      transform:rotate(-2deg);
-    }
-    h1 .two { color:var(--yellow); display:block; }
-    .kicker {
-      display:inline-block;
-      margin-top:22px;
-      background:var(--red);
-      color:var(--paper);
-      font-family:var(--heavy);
-      font-size:clamp(.7rem, 1.8vw, .95rem);
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      border:3px solid var(--ink);
-      padding:7px 14px;
-      transform:rotate(1.4deg);
-      box-shadow:4px 4px 0 var(--ink);
-    }
-
-    /* ---------- photo panels ---------- */
-
-    .shot { display:block; width:100%; height:auto; }
-    .panel .shot { border-bottom:0; }
-
-    /* ---------- origin story ---------- */
-
-    .origin { padding:26px 22px 28px; }
-    .origin h2, .press h2, .links h2 {
-      font-family:var(--display);
-      font-size:clamp(1.6rem, 4.4vw, 2.4rem);
-      letter-spacing:.03em;
-      color:var(--red);
-      -webkit-text-stroke:1px var(--ink);
-      margin-bottom:.45em;
-    }
-    .origin p { max-width:62ch; font-size:16px; }
-    .origin .pow {
-      display:inline-block;
-      font-family:var(--display);
-      background:var(--yellow);
-      border:3px solid var(--ink);
-      padding:2px 9px 0;
-      transform:rotate(-3deg);
-      box-shadow:3px 3px 0 var(--ink);
-      white-space:nowrap;
-    }
-
-    /* ---------- press: balloons on a roll ---------- */
-
-    .press { padding:22px 22px 0; }
-    .stage {
-      height:300px;
-      overflow:hidden;
-      position:relative;
-      margin:0 -6px;
-      padding:0 6px;
-    }
-    .track { animation:roll 78s linear infinite; }
-    .stage:hover .track, .stage:focus-within .track { animation-play-state:paused; }
-    @keyframes roll { from { transform:translateY(0); } to { transform:translateY(-50%); } }
-    .track ul { list-style:none; }
-
-    .balloon {
-      position:relative;
-      background:var(--paper);
-      border:3px solid var(--ink);
-      border-radius:20px;
-      padding:14px 16px 12px;
-      margin:0 0 26px;
-      box-shadow:5px 5px 0 rgba(0,0,0,.85);
-    }
-    .balloon:nth-child(even) { background:#eaf6ff; }
-    .balloon::after {           /* the tail */
-      content:"";
-      position:absolute;
-      left:30px; bottom:-15px;
-      width:0; height:0;
-      border:12px solid transparent;
-      border-top-color:var(--ink);
-    }
-    .balloon .q { display:block; font-size:15px; margin-bottom:.5em; }
-    .balloon .src {
-      font-family:var(--heavy);
-      font-size:10.5px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-    }
-    .balloon .src a { color:var(--blue); }
-    .balloon .tag {
-      font-family:var(--heavy);
-      font-size:9px;
-      background:var(--yellow);
-      border:2px solid var(--ink);
-      padding:1px 5px;
-      margin-left:6px;
-      text-transform:uppercase;
-    }
-    .press .foot {
-      font-family:var(--heavy);
-      font-size:10px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      border-top:3px solid var(--ink);
-      margin:0 -22px;
-      padding:9px 22px;
-      background:var(--yellow);
+      min-height:100vh;
       display:flex;
-      justify-content:space-between;
-      gap:10px;
+      align-items:flex-end;
+      padding:44px 20px 54px;
+      background:#0b0b0b url("hero.jpg") 72% 40% / cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::after {
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.5) 40%, rgba(0,0,0,0) 72%),
+                 linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 42%);
+      pointer-events:none;
+    }
+    .hero .inner { position:relative; z-index:2; max-width:52ch; }
+
+    .path {
+      position:absolute; top:18px; left:20px; z-index:2;
+      color:var(--dim); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    }
+    .path b { color:var(--red); font-weight:400; }
+
+    h1 {
+      font-size:clamp(2.1rem, 7.5vw, 3.6rem);
+      font-weight:400;
+      letter-spacing:-.04em;
+      line-height:1;
+      margin-bottom:.35em;
+    }
+    h1 span { color:var(--red); }
+    .role { margin-bottom:1em; }
+    .bio { max-width:44ch; color:var(--fg); }
+
+    /* the one flourish: a hairline that cuts the page */
+    .seam {
+      position:absolute; top:0; bottom:0; left:46%;
+      width:1px; background:var(--red); opacity:.8; z-index:3;
     }
 
-    /* ---------- links as action buttons ---------- */
+    /* ---------- body ---------- */
 
-    .links { padding:24px 22px 26px; }
-    .btns { display:flex; flex-wrap:wrap; gap:14px; margin-top:6px; }
-    .btn {
-      font-family:var(--display);
-      font-size:1.15rem;
-      letter-spacing:.04em;
-      background:var(--red);
-      color:var(--paper);
-      border:3px solid var(--ink);
-      padding:8px 16px 5px;
-      text-decoration:none;
-      box-shadow:5px 5px 0 var(--ink);
-      transform:rotate(-1.2deg);
-      display:inline-block;
+    main { max-width:88ch; margin:0 auto; padding:0 20px 90px; }
+
+    h2 {
+      font-size:11px; font-weight:400; letter-spacing:.24em; text-transform:uppercase;
+      color:var(--red);
+      border-top:1px solid var(--line);
+      padding-top:12px;
+      margin:3.2em 0 1.2em;
+      display:flex; justify-content:space-between; gap:12px;
     }
-    .btn:nth-child(even) { background:var(--blue); transform:rotate(1.1deg); }
-    .btn:hover { background:var(--yellow); color:var(--ink); }
-    .btn:active { transform:translate(4px,4px) rotate(0deg); box-shadow:1px 1px 0 var(--ink); }
+    h2 em { font-style:normal; color:var(--dim); letter-spacing:.14em; }
 
-    .sub { font-family:var(--heavy); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin:22px 0 0; }
+    /* ---------- press: a real scroller that also drifts ---------- */
 
-    .endcard {
-      text-align:center;
-      font-family:var(--display);
-      font-size:clamp(1.3rem, 3.4vw, 2rem);
-      letter-spacing:.05em;
-      color:var(--ink);
-      padding:6px 0 0;
+    .feed {
+      height:340px;
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      border:1px solid var(--line);
+      background:#0c0c0d;
+      /* NB: do not set scrollbar-width here. In Chrome the standard property
+         disables the ::-webkit-scrollbar rules below, which turns the bar
+         back into an invisible overlay. Firefox falls back to the two
+         scrollbar-* declarations in the @supports block underneath. */
+    }
+    .feed::-webkit-scrollbar { width:12px; }
+    .feed::-webkit-scrollbar-track { background:#131313; border-left:1px solid var(--line); }
+    .feed::-webkit-scrollbar-thumb { background:var(--red); border:3px solid #131313; }
+    .feed::-webkit-scrollbar-thumb:hover { background:#ff5030; }
+
+    /* Firefox has no ::-webkit-scrollbar; give it the standard properties,
+       scoped so Chrome never sees them. */
+    @supports (-moz-appearance:none) {
+      .feed { scrollbar-width:thin; scrollbar-color:var(--red) #131313; }
     }
 
-    @media (max-width:760px) {
-      body { background-size:11px 11px; }
-      /* the drop shadow needs more room between the two lines at this size */
-      h1 { line-height:1.02; text-shadow:4px 4px 0 var(--red), 7px 7px 0 var(--ink); }
-      .panel { box-shadow:6px 6px 0 var(--ink); margin-bottom:26px; }
-      .caption { max-width:80%; }
-      .stage { height:auto; overflow:visible; }
-      .track { animation:none; }
-      .track ul + ul { display:none; }
-      .origin, .press, .links { padding-left:16px; padding-right:16px; }
-      .press .foot { margin:0 -16px; padding:9px 16px; }
+    .feed ul { list-style:none; }
+    .feed li {
+      padding:16px 18px;
+      border-bottom:1px dashed var(--line);
+      font-size:13.5px;
+      line-height:1.55;
     }
-    @media (prefers-reduced-motion: reduce) {
-      .track { animation:none; }
-      .stage { overflow-y:auto; }
+    .feed li:last-child { border-bottom:0; }
+    .feed .q { display:block; margin-bottom:.5em; }
+    .feed .head { display:block; margin-bottom:.5em; color:var(--fg); }
+    .feed .src { color:var(--dim); font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+    .feed .tag {
+      color:var(--red); border:1px solid var(--line);
+      font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+      padding:1px 5px; margin-left:6px;
+    }
+
+    figure { margin:2.6em 0 0; }
+    figure img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+    figcaption { color:var(--dim); font-size:12px; margin-top:.6em; }
+
+    .links { display:grid; grid-template-columns:max-content 1fr; gap:.4em 2.5ch; }
+    .links dt { color:var(--dim); }
+
+    footer {
+      margin-top:3.6em; padding-top:12px; border-top:1px solid var(--line);
+      color:var(--dim); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+      display:flex; justify-content:space-between; gap:12px;
+    }
+
+    @media (max-width:700px) {
+      body { font-size:14px; }
+      .hero { min-height:94vh; padding:40px 15px 40px; background-position:66% 34%; }
+      .hero::after {
+        background:linear-gradient(0deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.45) 44%, rgba(0,0,0,0) 74%);
+      }
+      .seam { display:none; }
+      main { padding:0 15px 64px; }
+      h2 em { display:none; }        /* no room for the subtitle; it wraps badly */
+      .feed { height:300px; }
+      .links { grid-template-columns:1fr; gap:0; }
+      .links dd { margin-bottom:.7em; }
     }
   </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- ===== title ===== -->
-  <div class="panel">
-    <div class="hero-title">
-      <h1>MASON<span class="two">LYNAUGH</span></h1>
-      <p class="kicker">Executive Director &middot; Stand With Crypto</p>
+  <section class="hero">
+    <span class="seam" aria-hidden="true"></span>
+    <p class="path">index.html<b> // </b>public</p>
+    <div class="inner">
+      <h1>Mason <span>Lynaugh</span></h1>
+      <p class="role">executive director &middot; stand with crypto</p>
+      <p class="bio">atx dao cofounder. forbes 30 under 30, local austin.<br />
+         ground game for 3m+ crypto advocates.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ===== hero shot ===== -->
-  <div class="panel tilt-l">
-    <p class="caption tl">Meanwhile&hellip; somewhere in the Westfjords.</p>
-    <img class="shot" src="hero.jpg" width="2000" height="1335"
-         alt="Mason Lynaugh walking a gravel road in the Westfjords, Iceland" />
-    <p class="caption br">35mm. No cape.</p>
-  </div>
+  <main>
 
-  <!-- ===== origin ===== -->
-  <div class="panel tilt-r">
-    <div class="origin">
-      <h2>Origin story</h2>
-      <p>ATX DAO cofounder. Forbes 30 Under 30, Local Austin. Ground game for
-         <span class="pow">3M+ advocates</span> across all fifty states.</p>
+    <h2><span>Press</span><em>most recent first &middot; scroll or let it run</em></h2>
+    <div class="feed" id="feed" tabindex="0" aria-label="Press mentions, most recent first">
+      <ul>
+        <li>
+          <span class="q">&ldquo;In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle.&rdquo;</span>
+          <span class="src"><a href="https://www.investing.com/news/stock-market-news/coinbasebacked-crypto-advocacy-group-endorses-32-us-midterm-candidates-4873491">Reuters</a> &middot; 24 Aug 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;They overlook crypto voters at their own peril.&rdquo;</span>
+          <span class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; 24 Aug 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;Advocates will be mobilizing in their communities during August recess to ensure their senators understand the urgency and necessity of enacting a fair, transparent legal framework.&rdquo;</span>
+          <span class="src"><a href="https://rollcall.com/2026/08/18/crypto-bill-in-limbo-as-stakeholders-ramp-up-recess-efforts/">Roll Call</a> &middot; 18 Aug 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;The CLARITY Act will put an end to crypto users, developers, and companies existing in gray areas.&rdquo;</span>
+          <span class="src"><a href="https://washingtonreporter.news/op-ed-mason-lynaugh-congress-is-getting-market-structure-right-for-millions-of-americans-now-its-time-to-get-it-done/">Washington Reporter</a> &middot; 25 Jun 2026 <span class="tag">op-ed</span></span>
+        </li>
+        <li>
+          <span class="q">&ldquo;The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.&rdquo;</span>
+          <span class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; 14 May 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;This year crypto voters are poised to play a powerful and decisive role at the ballot box.&rdquo;</span>
+          <span class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; 7 May 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;It's really going to be interesting to see how the margins are shaped by people who are voting specifically for crypto champions or against crypto antagonists.&rdquo;</span>
+          <span class="src"><a href="https://www.semafor.com/article/03/26/2026/pro-crypto-group-launches-midterms-offensive">Semafor</a> &middot; 26 Mar 2026</span>
+        </li>
+        <li>
+          <span class="q">&ldquo;2026 is where we prove that the crypto voter is a defining constituency for the next generation.&rdquo;</span>
+          <span class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; 5 Sep 2025</span>
+        </li>
+        <li>
+          <span class="head">Democratic divisions emerge as Congress tackles crypto regulation</span>
+          <span class="src"><a href="https://www.nbcnews.com/politics/congress/democratic-divisions-emerge-congress-tackles-crypto-regulation-rcna212886">NBC News</a> &middot; 17 Jun 2025</span>
+        </li>
+      </ul>
     </div>
-  </div>
 
-  <!-- ===== press ===== -->
-  <div class="panel">
-    <div class="press">
-      <h2>They said it!</h2>
-      <div class="stage" aria-label="Press mentions, most recent first">
-        <div class="track">
-          
-          <ul>
-            <li class="balloon">
-              <span class="q">&ldquo;In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle.&rdquo;</span>
-              <span class="src"><a href="https://www.investing.com/news/stock-market-news/coinbasebacked-crypto-advocacy-group-endorses-32-us-midterm-candidates-4873491">Reuters</a> &middot; 24 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;They overlook crypto voters at their own peril.&rdquo;</span>
-              <span class="src"><a href="https://www.coindesk.com/policy/2026/08/24/crypto-political-group-details-list-of-u-s-congressional-allies-its-backing-this-year">CoinDesk</a> &middot; 24 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;Advocates will be mobilizing in their communities during August recess to ensure their senators understand the urgency and necessity of enacting a fair, transparent legal framework.&rdquo;</span>
-              <span class="src"><a href="https://rollcall.com/2026/08/18/crypto-bill-in-limbo-as-stakeholders-ramp-up-recess-efforts/">Roll Call</a> &middot; 18 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;The CLARITY Act will put an end to crypto users, developers, and companies existing in gray areas.&rdquo;</span>
-              <span class="src"><a href="https://washingtonreporter.news/op-ed-mason-lynaugh-congress-is-getting-market-structure-right-for-millions-of-americans-now-its-time-to-get-it-done/">Washington Reporter</a> &middot; 25 Jun 2026 <span class="tag">op-ed</span></span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.&rdquo;</span>
-              <span class="src"><a href="https://www.theblock.co/news/regulation/2026-05-14-senate-banking-committee-advances-landmark-crypto-market-structure-bill-garners-some-democratic-support-401341">The Block</a> &middot; 14 May 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;This year crypto voters are poised to play a powerful and decisive role at the ballot box.&rdquo;</span>
-              <span class="src"><a href="https://crypto.news/mason-lynaugh-lays-out-crypto-midterm-plan/">crypto.news</a> &middot; 7 May 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;It's really going to be interesting to see how the margins are shaped by people who are voting specifically for crypto champions or against crypto antagonists.&rdquo;</span>
-              <span class="src"><a href="https://www.semafor.com/article/03/26/2026/pro-crypto-group-launches-midterms-offensive">Semafor</a> &middot; 26 Mar 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;2026 is where we prove that the crypto voter is a defining constituency for the next generation.&rdquo;</span>
-              <span class="src"><a href="https://punchbowl.news/article/vault/stand-with-crypto-seeks-voters/">Punchbowl News</a> &middot; Sep 2025</span>
-            </li>
-          </ul>
+    <figure>
+      <img src="consensus.jpg" width="2000" height="1125" loading="lazy"
+           alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
+      <figcaption>consensus miami &middot; 2026</figcaption>
+    </figure>
 
-          <ul aria-hidden="true">
-            <li class="balloon">
-              <span class="q">&ldquo;In 2026 we're very much showing that we have the organizing capacity and that our advocates are a true voting bloc that can move the needle.&rdquo;</span>
-              <span class="src">Reuters &middot; 24 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;They overlook crypto voters at their own peril.&rdquo;</span>
-              <span class="src">CoinDesk &middot; 24 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;Advocates will be mobilizing in their communities during August recess to ensure their senators understand the urgency and necessity of enacting a fair, transparent legal framework.&rdquo;</span>
-              <span class="src">Roll Call &middot; 18 Aug 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;The CLARITY Act will put an end to crypto users, developers, and companies existing in gray areas.&rdquo;</span>
-              <span class="src">Washington Reporter &middot; 25 Jun 2026 <span class="tag">op-ed</span></span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;The Clarity Act on the floor will be the most important vote that lawmakers have ever taken as it pertains to crypto.&rdquo;</span>
-              <span class="src">The Block &middot; 14 May 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;This year crypto voters are poised to play a powerful and decisive role at the ballot box.&rdquo;</span>
-              <span class="src">crypto.news &middot; 7 May 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;It's really going to be interesting to see how the margins are shaped by people who are voting specifically for crypto champions or against crypto antagonists.&rdquo;</span>
-              <span class="src">Semafor &middot; 26 Mar 2026</span>
-            </li>
-            <li class="balloon">
-              <span class="q">&ldquo;2026 is where we prove that the crypto voter is a defining constituency for the next generation.&rdquo;</span>
-              <span class="src">Punchbowl News &middot; Sep 2025</span>
-            </li>
-          </ul>
+    <h2><span>Links</span></h2>
+    <dl class="links">
+      <dt>stand with crypto</dt>
+      <dd><a href="https://www.standwithcrypto.org">standwithcrypto.org</a></dd>
+      <dt>x</dt>
+      <dd><a href="https://x.com/masonlynaugh">x.com/masonlynaugh</a></dd>
+      <dt>linkedin</dt>
+      <dd><a href="https://www.linkedin.com/in/masonlynaugh">linkedin.com/in/masonlynaugh</a></dd>
+      <dt>github</dt>
+      <dd><a href="https://github.com/masonleenaugh">github.com/masonleenaugh</a></dd>
+    </dl>
 
-        </div>
-      </div>
-      <p class="foot"><span>Most recent first</span><span>Hover to stop</span></p>
-    </div>
-  </div>
+    <h2><span>Also</span></h2>
+    <dl class="links">
+      <dt>announcement</dt>
+      <dd><a href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">stand with crypto names new executive director</a></dd>
+      <dt>forbes</dt>
+      <dd><a href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">30 under 30, local austin</a></dd>
+    </dl>
 
-  <!-- ===== consensus shot ===== -->
-  <div class="panel tilt-l">
-    <p class="caption tl">On stage. Consensus Miami, 2026.</p>
-    <img class="shot" src="consensus.jpg" width="2000" height="1125" loading="lazy"
-         alt="Mason Lynaugh speaking on a panel at Consensus Miami" />
-  </div>
+    <footer><span>uncorrected proof</span><span>2026</span></footer>
 
-  <!-- ===== links ===== -->
-  <div class="panel tilt-r">
-    <div class="links">
-      <h2>Find him</h2>
-      <div class="btns">
-        <a class="btn" href="https://www.standwithcrypto.org">Stand With Crypto</a>
-        <a class="btn" href="https://x.com/masonlynaugh">X</a>
-        <a class="btn" href="https://www.linkedin.com/in/masonlynaugh">LinkedIn</a>
-        <a class="btn" href="https://github.com/masonleenaugh">GitHub</a>
-      </div>
-      <p class="sub">Also in this issue</p>
-      <div class="btns">
-        <a class="btn" href="https://www.standwithcrypto.org/press/stand-with-crypto-announces-new-executive-director">ED Announcement</a>
-        <a class="btn" href="https://www.forbes.com/sites/forbesunder30team/2023/08/09/30-under-30-local-2023-austin/">Forbes 30U30</a>
-      </div>
-    </div>
-  </div>
+  </main>
 
-  <p class="endcard">&hellip;to be continued.</p>
+<script>
+(function () {
+  "use strict";
+  var feed = document.getElementById("feed");
+  if (!feed) return;
 
-</div>
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;                    // leave it as a plain scroller
+
+  var PX_PER_SEC = 16;                    // slow drift, readable
+  var RESUME_AFTER = 2600;                // ms of quiet before it starts again
+  var paused = false, holdUntil = 0, carry = 0, last = null;
+
+  function hold() { holdUntil = performance.now() + RESUME_AFTER; }
+
+  feed.addEventListener("pointerenter", function () { paused = true; });
+  feed.addEventListener("pointerleave", function () { paused = false; });
+  feed.addEventListener("focusin",  function () { paused = true; });
+  feed.addEventListener("focusout", function () { paused = false; });
+  // any manual scroll wins; the drift waits its turn
+  feed.addEventListener("wheel", hold, { passive:true });
+  feed.addEventListener("touchstart", hold, { passive:true });
+  feed.addEventListener("keydown", hold);
+
+  function frame(now) {
+    if (last === null) last = now;
+    var dt = now - last;
+    last = now;
+
+    if (!paused && now > holdUntil && dt < 200) {
+      carry += (dt / 1000) * PX_PER_SEC;
+      var step = Math.floor(carry);
+      if (step > 0) {
+        carry -= step;
+        if (feed.scrollTop + feed.clientHeight >= feed.scrollHeight - 1) {
+          feed.scrollTop = 0;             // loop back to the top
+        } else {
+          feed.scrollTop += step;
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
