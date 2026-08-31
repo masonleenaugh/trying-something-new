@@ -125,9 +125,49 @@
       color:var(--mute);
     }
     .bottom a { color:var(--paper); }
+    .tag {
+      display:flex;
+      align-items:flex-end;
+      gap:14px;
+      margin-top:18px;
+    }
+    .mug {
+      width:112px;
+      height:140px;
+      object-fit:cover;
+      object-position:50% 22%;
+      border:1px solid var(--red);
+      flex:none;
+      display:block;
+      filter:grayscale(1) contrast(1.12);
+      transition:filter .18s;
+    }
+    .mug:hover { filter:none; }
+    .band {
+      position:relative;
+      height:42vh;
+      min-height:220px;
+      background:#000 url("consensus.jpg") 50% 34% / cover no-repeat;
+      border-top:8px solid var(--red);
+    }
+    .band::after {
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,0) 38%, rgba(0,0,0,.72) 100%);
+      pointer-events:none;
+    }
+    .band .cap {
+      position:absolute;
+      left:16px; bottom:14px;
+      z-index:2;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--paper);
+    }
     .press {
       background:#000;
-      border-top:8px solid var(--red);
+      border-top:none;
       padding:0;
     }
     .press h2 {
@@ -203,7 +243,9 @@
       h1 { font-size:clamp(2.2rem, 11vw, 3.2rem); margin-top:10px; }
       .meta { font-size:.95rem; max-width:14em; }
       .vert { display:none; }
-      .badge { margin-top:12px; }
+      .badge { margin-top:0; }
+      .mug { width:88px; height:110px; }
+      .band { height:30vh; min-height:170px; }
     }
   </style>
 </head>
@@ -224,10 +266,16 @@
         <h1>Mason<b>Lynaugh</b></h1>
         <p class="role">// executive director</p>
         <p class="meta">ATX DAO cofounder. Forbes 30 Under 30 Local Austin. Ground game for 3M+ crypto advocates.</p>
-        <p class="badge">trying something new</p>
+        <div class="tag">
+          <img class="mug" src="portrait.jpg" alt="Mason Lynaugh" width="480" height="632" />
+          <p class="badge">trying something new</p>
+        </div>
       </div>
       <p class="bottom"><a href="#press">quoted ↓</a></p>
     </div>
+  </section>
+  <section class="band">
+    <p class="cap">Consensus Miami &middot; 2026</p>
   </section>
   <section class="press" id="press">
     <h2>Quoted in — do not bury</h2>
