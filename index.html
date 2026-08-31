@@ -81,12 +81,26 @@
     /* the hero is a full screen with two lines on it; without this nobody
        knows the page continues */
     .more {
-      margin-top:1.6em;
-      font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-      color:var(--dim);
+      margin-top:1.9em;
+      font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--red);
     }
-    .more a { color:inherit; text-decoration:none; }
-    .more a:hover { background:var(--red); color:#000; }
+    .more a {
+      color:inherit;
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,42,18,.4);
+      padding-bottom:3px;
+    }
+    .more a:hover { background:var(--red); color:#000; border-bottom-color:transparent; }
+    /* a small nudge downward, so the cue reads as an instruction */
+    .more .arrow { display:inline-block; animation:nudge 2.4s ease-in-out infinite; }
+    @keyframes nudge {
+      0%, 62%, 100% { transform:translateY(0); }
+      78%           { transform:translateY(3px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .more .arrow { animation:none; }
+    }
 
     h1 {
       font-size:clamp(2.1rem, 7.5vw, 3.6rem);
@@ -222,7 +236,7 @@
     <div class="inner">
       <h1>Mason <span>Lynaugh</span></h1>
       <p class="role"><span class="kick">community organizer</span>executive director, stand with crypto</p>
-      <p class="more"><a href="#more">press &middot; bio &middot; links &darr;</a></p>
+      <p class="more"><a href="#more">press &middot; bio &middot; links <span class="arrow">&darr;</span></a></p>
     </div>
   </section>
 
