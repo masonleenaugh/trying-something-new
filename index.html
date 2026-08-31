@@ -78,6 +78,16 @@
     }
     .path b { color:var(--red); font-weight:400; }
 
+    /* the hero is a full screen with two lines on it; without this nobody
+       knows the page continues */
+    .more {
+      position:absolute; left:20px; bottom:28px; z-index:2;
+      font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--dim);
+    }
+    .more a { color:inherit; text-decoration:none; }
+    .more a:hover { background:var(--red); color:#000; }
+
     h1 {
       font-size:clamp(2.1rem, 7.5vw, 3.6rem);
       font-weight:400;
@@ -186,6 +196,7 @@
         background:linear-gradient(180deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 26%, rgba(0,0,0,.15) 52%, rgba(0,0,0,0) 70%);
       }
       main { padding:0 15px 64px; }
+      .more { left:15px; bottom:22px; }
       h2 em { display:none; }        /* no room for the subtitle; it wraps badly */
       .below { grid-template-columns:1fr; gap:0; margin-top:2.2em; }
       .below .pressbox { margin-top:2.4em; }
@@ -203,11 +214,12 @@
       <h1>Mason <span>Lynaugh</span></h1>
       <p class="role">community organizer</p>
     </div>
+    <p class="more"><a href="#more">press &middot; bio &middot; links &darr;</a></p>
   </section>
 
   <main>
 
-    <div class="below">
+    <div class="below" id="more">
 
       <div class="col">
         <figure class="pic">
