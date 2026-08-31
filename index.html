@@ -81,7 +81,7 @@
     /* the hero is a full screen with two lines on it; without this nobody
        knows the page continues */
     .more {
-      position:absolute; left:20px; bottom:28px; z-index:2;
+      margin-top:1.6em;
       font-size:11px; letter-spacing:.18em; text-transform:uppercase;
       color:var(--dim);
     }
@@ -196,7 +196,6 @@
         background:linear-gradient(180deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 26%, rgba(0,0,0,.15) 52%, rgba(0,0,0,0) 70%);
       }
       main { padding:0 15px 64px; }
-      .more { left:15px; bottom:22px; }
       h2 em { display:none; }        /* no room for the subtitle; it wraps badly */
       .below { grid-template-columns:1fr; gap:0; margin-top:2.2em; }
       .below .pressbox { margin-top:2.4em; }
@@ -212,9 +211,10 @@
     <p class="path">index.html<b> // </b>public</p>
     <div class="inner">
       <h1>Mason <span>Lynaugh</span></h1>
-      <p class="role">community organizer</p>
+      <p class="role">community organizer<br />
+         executive director, stand with crypto</p>
+      <p class="more"><a href="#more">press &middot; bio &middot; links &darr;</a></p>
     </div>
-    <p class="more"><a href="#more">press &middot; bio &middot; links &darr;</a></p>
   </section>
 
   <main>
