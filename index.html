@@ -211,6 +211,22 @@
     .links { display:grid; grid-template-columns:max-content 1fr; gap:.4em 2.5ch; }
     .links dt { color:var(--dim); }
 
+    /* ---------- interviews: a short static list, not a second feed ----------
+       Seven items read as complete; the drifting feed next door is for the
+       28 press rows, where volume is the point. Deliberately not a scroller. */
+
+    .talks { list-style:none; }
+    .talks li { border-bottom:1px dashed var(--line); padding:.85em 0; }
+    .talks li:last-child { border-bottom:0; }
+    .talks a { display:grid; grid-template-columns:1fr max-content; gap:.2em 2ch;
+               align-items:baseline; text-decoration:none; }
+    .talks a:hover .tl, .talks a:focus-visible .tl { color:var(--accent); }
+    .talks .tl { color:var(--fg); }
+    .talks .meta { color:var(--dim); font-size:11px; letter-spacing:.06em;
+                   text-transform:uppercase; white-space:nowrap; }
+    .talks .venue { color:var(--dim); font-size:11.5px; grid-column:1 / -1; }
+    .talks .venue b { color:var(--fg); font-weight:400; }
+
     footer {
       margin-top:3.6em; padding-top:12px; border-top:1px solid var(--line);
       color:var(--dim); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
@@ -231,6 +247,7 @@
       .below .pressbox { margin-top:2.4em; }
       .feed { height:300px; }
       .links { grid-template-columns:1fr; gap:0; }
+      .talks a { grid-template-columns:1fr; }
       .links dd { margin-bottom:.7em; }
     }
   </style>
@@ -268,6 +285,10 @@
         <h2><span>Press</span><em>most recent first &middot; scroll or let it run</em></h2>
         <div class="feed" id="feed" tabindex="0" aria-label="Press mentions, most recent first">
           <ul>
+            <li>
+              <span class="q">&ldquo;October may be National Cryptocurrency Month, but the date crypto voters care about is Nov. 3 &mdash; the day a motivated, visible bloc of crypto voters will back the doers over obstructionists at the polls.&rdquo;</span>
+              <span class="src"><a target="_blank" rel="noopener noreferrer" href="https://dcjournal.com/the-senate-underestimated-these-voters-theyre-ready-to-send-a-message-on-election-day/">DC Journal</a> &middot; 26 Oct 2026 <span class="tag">op-ed</span></span>
+            </li>
             <li>
               <span class="q">&ldquo;We have the potential to move the outcomes or at least play a significant factor in helping reelect these crypto champions.&rdquo;</span>
               <span class="src"><a target="_blank" rel="noopener noreferrer" href="https://www.reuters.com/legal/transactional/crypto-donors-navigate-mid-term-spending-dilemma-after-senate-bill-defeat-2026-10-07/">Reuters</a> &middot; 7 Oct 2026</span>
@@ -391,6 +412,59 @@
 
     </div>
 
+
+    <h2><span>Interviews</span><em>video &middot; most recent first</em></h2>
+    <ul class="talks">
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://bitcoinmagazine.com/videos/stand-with-crypto-director-the-crypto-vote-will-decide-the-midterms-mason-lynaugh">
+          <span class="tl">Stand With Crypto Director: The Crypto Vote Will Decide the Midterms</span>
+          <span class="meta">23 Oct 2026</span>
+          <span class="venue"><b>Bitcoin Magazine</b> &middot; interview</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=1Cplxug62JQ">
+          <span class="tl">2.7 Million Crypto Voters? Stand With Crypto Is Changing U.S. Policy</span>
+          <span class="meta">5 Mar 2026 &middot; 7 min</span>
+          <span class="venue"><b>Ray Fuentes</b> &middot; interview</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2RUyBuovDRs">
+          <span class="tl">The Exchange Evolution: The One Stop Shop</span>
+          <span class="meta">24 Nov 2025 &middot; 30 min</span>
+          <span class="venue"><b>Texas Blockchain Council</b> &middot; panel</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=dZY-NILzRYk">
+          <span class="tl">Crypto Policy in Washington DC: Stand With Crypto &amp; the Fight for Web3</span>
+          <span class="meta">28 Oct 2025 &middot; 44 min</span>
+          <span class="venue"><b>BMX DeFi</b> &middot; podcast</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=vREv19ZsgoQ">
+          <span class="tl">How Crypto Is Becoming a People-Powered Movement</span>
+          <span class="meta">7 Jun 2025 &middot; 13 min</span>
+          <span class="venue"><b>There&rsquo;s Layers To This!</b> &middot; interview</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2Jbj1rFaVUs">
+          <span class="tl">What Is a DAO? &mdash; Founder Series, Episode 63</span>
+          <span class="meta">30 Jun 2023 &middot; 66 min</span>
+          <span class="venue"><b>Lucie Beet</b> &middot; interview</span>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=I7JkFG7IYDU">
+          <span class="tl">Building a Community-Driven Future in Crypto</span>
+          <span class="meta">7 Jun 2023 &middot; 24 min</span>
+          <span class="venue"><b>Texas Blockchain Council</b> &middot; panel</span>
+        </a>
+      </li>
+    </ul>
 
     <h2><span>Links</span></h2>
     <dl class="links">
