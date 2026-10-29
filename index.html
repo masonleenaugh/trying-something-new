@@ -213,19 +213,26 @@
 
     /* ---------- interviews: a short static list, not a second feed ----------
        A short list reads as complete; the drifting feed next door is for the
-       press rows, where volume is the point. Deliberately not a scroller. */
+       press rows, where volume is the point. Deliberately not a scroller.
+
+       One line per row. The venue leads because it is the recognisable part
+       and must never be the thing that gets cut; the title trails it and
+       ellipsises. min-width:0 is what lets a grid child actually shrink —
+       without it the track floors at the text's intrinsic width and nothing
+       truncates. Full titles stay in the markup, so nothing is lost to a
+       crawler, only to the eye. */
 
     .talks { list-style:none; }
-    .talks li { border-bottom:1px dashed var(--line); padding:.85em 0; }
+    .talks li { border-bottom:1px dashed var(--line); padding:.55em 0; }
     .talks li:last-child { border-bottom:0; }
-    .talks a { display:grid; grid-template-columns:1fr max-content; gap:.2em 2ch;
+    .talks a { display:grid; grid-template-columns:1fr max-content; gap:2ch;
                align-items:baseline; text-decoration:none; }
-    .talks a:hover .tl, .talks a:focus-visible .tl { color:var(--accent); }
-    .talks .tl { color:var(--fg); }
+    .talks .tl { color:var(--dim); min-width:0;
+                 white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .talks .tl b { color:var(--fg); font-weight:400; }
+    .talks a:hover .tl b, .talks a:focus-visible .tl b { color:var(--accent); }
     .talks .meta { color:var(--dim); font-size:11px; letter-spacing:.06em;
                    text-transform:uppercase; white-space:nowrap; }
-    .talks .venue { color:var(--dim); font-size:11.5px; grid-column:1 / -1; }
-    .talks .venue b { color:var(--fg); font-weight:400; }
 
     footer {
       margin-top:3.6em; padding-top:12px; border-top:1px solid var(--line);
@@ -248,6 +255,7 @@
       .feed { height:300px; }
       .links { grid-template-columns:1fr; gap:0; }
       .talks a { grid-template-columns:1fr; }
+      .talks .tl { white-space:normal; overflow:visible; }
       .links dd { margin-bottom:.7em; }
     }
   </style>
@@ -417,79 +425,68 @@
     <ul class="talks">
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=FhacQ3RTziw&amp;t=3896s">
-          <span class="tl">Crypto Voters Are a Real Bloc, Six Days Out</span>
-          <span class="meta">28 Oct 2026 &middot; 18 min</span>
-          <span class="venue"><b>The Rollup</b> &middot; segment, Convergence ep. 2</span>
+          <span class="tl"><b>The Rollup</b> &middot; Crypto Voters Are a Real Bloc, Six Days Out</span>
+          <span class="meta">segment &middot; 28 Oct 2026 &middot; 18 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://bitcoinmagazine.com/videos/stand-with-crypto-director-the-crypto-vote-will-decide-the-midterms-mason-lynaugh">
-          <span class="tl">Stand With Crypto Director: The Crypto Vote Will Decide the Midterms</span>
-          <span class="meta">23 Oct 2026 &middot; 16 min</span>
-          <span class="venue"><b>Bitcoin Magazine</b> &middot; interview</span>
+          <span class="tl"><b>Bitcoin Magazine</b> &middot; Stand With Crypto Director: The Crypto Vote Will Decide the Midterms</span>
+          <span class="meta">interview &middot; 23 Oct 2026 &middot; 16 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=HTy6CtlgIrQ&amp;t=3108s">
-          <span class="tl">Making the Case for a Pro-Bitcoin Congress in the Midterms</span>
-          <span class="meta">15 Oct 2026 &middot; 30 min</span>
-          <span class="venue"><b>Simply Bitcoin</b> &middot; segment, ep. 1614</span>
+          <span class="tl"><b>Simply Bitcoin</b> &middot; Making the Case for a Pro-Bitcoin Congress in the Midterms</span>
+          <span class="meta">segment &middot; 15 Oct 2026 &middot; 30 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=1Cplxug62JQ">
-          <span class="tl">2.7 Million Crypto Voters? Stand With Crypto Is Changing U.S. Policy</span>
-          <span class="meta">5 Mar 2026 &middot; 7 min</span>
-          <span class="venue"><b>Ray Fuentes</b> &middot; interview</span>
+          <span class="tl"><b>Ray Fuentes</b> &middot; 2.7 Million Crypto Voters? Stand With Crypto Is Changing U.S. Policy</span>
+          <span class="meta">interview &middot; 5 Mar 2026 &middot; 7 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2RUyBuovDRs">
-          <span class="tl">The Exchange Evolution: The One Stop Shop</span>
-          <span class="meta">24 Nov 2025 &middot; 30 min</span>
-          <span class="venue"><b>Texas Blockchain Council</b> &middot; panel</span>
+          <span class="tl"><b>Texas Blockchain Council</b> &middot; The Exchange Evolution: The One Stop Shop</span>
+          <span class="meta">panel &middot; 24 Nov 2025 &middot; 30 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=dZY-NILzRYk">
-          <span class="tl">Crypto Policy in Washington DC: Stand With Crypto &amp; the Fight for Web3</span>
-          <span class="meta">28 Oct 2025 &middot; 44 min</span>
-          <span class="venue"><b>BMX DeFi</b> &middot; podcast</span>
+          <span class="tl"><b>BMX DeFi</b> &middot; Crypto Policy in Washington DC: Stand With Crypto &amp; the Fight for Web3</span>
+          <span class="meta">podcast &middot; 28 Oct 2025 &middot; 44 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://podcasts.apple.com/us/podcast/crypto-week-in-congress-can-washington-finally-deliver/id1667543601">
-          <span class="tl">Crypto Week in Congress: Can Washington Finally Deliver Clarity?</span>
-          <span class="meta">11 Jul 2025 &middot; 14 min</span>
-          <span class="venue"><b>Cointelegraph &middot; Byte-Sized Insight</b> &middot; podcast</span>
+          <span class="tl"><b>Cointelegraph &middot; Byte-Sized Insight</b> &middot; Crypto Week in Congress: Can Washington Finally Deliver Clarity?</span>
+          <span class="meta">podcast &middot; 11 Jul 2025 &middot; 14 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=vREv19ZsgoQ">
-          <span class="tl">How Crypto Is Becoming a People-Powered Movement</span>
-          <span class="meta">7 Jun 2025 &middot; 13 min</span>
-          <span class="venue"><b>There&rsquo;s Layers To This!</b> &middot; interview</span>
+          <span class="tl"><b>There&rsquo;s Layers To This!</b> &middot; How Crypto Is Becoming a People-Powered Movement</span>
+          <span class="meta">interview &middot; 7 Jun 2025 &middot; 13 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://podcasts.apple.com/us/podcast/mason-lynaugh-talking-to-politicians-about-crypto-and/id1698422758?i=1000632357116">
-          <span class="tl">Talking to Politicians About Crypto, and Why City DAOs Work So Well</span>
-          <span class="meta">24 Oct 2023 &middot; 57 min</span>
-          <span class="venue"><b>Answers to the Universe with Avery Bartlett</b> &middot; podcast</span>
+          <span class="tl"><b>Answers to the Universe with Avery Bartlett</b> &middot; Talking to Politicians About Crypto, and Why City DAOs Work So Well</span>
+          <span class="meta">podcast &middot; 24 Oct 2023 &middot; 57 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2Jbj1rFaVUs">
-          <span class="tl">What Is a DAO? &mdash; Founder Series, Episode 63</span>
-          <span class="meta">30 Jun 2023 &middot; 66 min</span>
-          <span class="venue"><b>Lucie Beet</b> &middot; interview</span>
+          <span class="tl"><b>Lucie Beet</b> &middot; What Is a DAO? &mdash; Founder Series, Episode 63</span>
+          <span class="meta">interview &middot; 30 Jun 2023 &middot; 66 min</span>
         </a>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=I7JkFG7IYDU">
-          <span class="tl">Building a Community-Driven Future in Crypto</span>
-          <span class="meta">7 Jun 2023 &middot; 24 min</span>
-          <span class="venue"><b>Texas Blockchain Council</b> &middot; panel</span>
+          <span class="tl"><b>Texas Blockchain Council</b> &middot; Building a Community-Driven Future in Crypto</span>
+          <span class="meta">panel &middot; 7 Jun 2023 &middot; 24 min</span>
         </a>
       </li>
     </ul>
