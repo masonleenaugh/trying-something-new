@@ -225,14 +225,25 @@
     .talks { list-style:none; }
     .talks li { border-bottom:1px dashed var(--line); padding:.55em 0; }
     .talks li:last-child { border-bottom:0; }
-    .talks a { display:grid; grid-template-columns:1fr max-content; gap:2ch;
-               align-items:baseline; text-decoration:none; }
+    .talks > li > a, .talks .parts { display:grid;
+               grid-template-columns:1fr max-content; gap:2ch;
+               align-items:baseline; }
+    .talks a { text-decoration:none; }
     .talks .tl { color:var(--dim); min-width:0;
                  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .talks .tl b { color:var(--fg); font-weight:400; }
-    .talks a:hover .tl b, .talks a:focus-visible .tl b { color:var(--accent); }
+    .talks a:hover .tl b, .talks a:focus-visible .tl b,
+    .talks a.tl:hover b, .talks a.tl:focus-visible b { color:var(--accent); }
     .talks .meta { color:var(--dim); font-size:11px; letter-spacing:.06em;
                    text-transform:uppercase; white-space:nowrap; }
+
+    /* One broadcast, two cuts of him. The row keeps its shape: the title
+       opens the first cut, and each timestamp in the meta opens its own.
+       Anchors cannot nest, so this row grids a wrapper instead of a link —
+       hence the > li > a above, which leaves these inner ones alone. */
+    .talks .meta a { color:var(--fg); border-bottom:1px solid var(--line); }
+    .talks .meta a:hover, .talks .meta a:focus-visible {
+                   color:var(--accent); border-bottom-color:var(--accent); }
 
     footer {
       margin-top:3.6em; padding-top:12px; border-top:1px solid var(--line);
@@ -254,7 +265,7 @@
       .below .pressbox { margin-top:2.4em; }
       .feed { height:300px; }
       .links { grid-template-columns:1fr; gap:0; }
-      .talks a { grid-template-columns:1fr; }
+      .talks > li > a, .talks .parts { grid-template-columns:1fr; }
       .talks .tl { white-space:normal; overflow:visible; }
       .links dd { margin-bottom:.7em; }
     }
@@ -434,10 +445,10 @@
         </a>
       </li>
       <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=W4xJ3L6Vp2Q&amp;t=372s">
-          <span class="tl"><b>CNBC</b> &middot; On Tight Races and Turning Out the Advocates</span>
-          <span class="meta">segment &middot; 1 Nov 2026 &middot; 48 sec</span>
-        </a>
+        <div class="parts">
+          <a class="tl" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=W4xJ3L6Vp2Q&amp;t=372s"><b>CNBC</b> &middot; On Tight Races and Turning Out the Advocates</a>
+          <span class="meta">segments &middot; 1 Nov 2026 &middot; <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=W4xJ3L6Vp2Q&amp;t=372s">6:12</a> &middot; <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=W4xJ3L6Vp2Q&amp;t=615s">10:16</a></span>
+        </div>
       </li>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=OwO1T7pYRHo&amp;t=5415s">
